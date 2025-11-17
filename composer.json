@@ -12,7 +12,6 @@
         "academe/omnipay-authorizenetapi": " ~3.0",
         "authorizenet/authorizenet": "^2.0",
         "doctrine/dbal": "^3.3",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel-validation-rules/credit-card": "^1.7",
         "laravel/framework": "^8.83",
