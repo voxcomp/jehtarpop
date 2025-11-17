@@ -17,15 +17,15 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('registration_id');
             $table->foreign('registration_id')->references('id')->on('registrations');
-            $table->string('name',200);
-            $table->string('address',200)->null()->default('');
-            $table->string('city',200)->null()->default('');
-            $table->string('state',50)->null()->default('');
-            $table->string('zip',11)->null()->default('');
-	        $table->string('transaction_id',50);
-	        $table->float('amount', 10, 2);
-	        $table->string('currency');
-	        $table->string('payment_status');
+            $table->string('name', 200);
+            $table->string('address', 200)->null()->default('');
+            $table->string('city', 200)->null()->default('');
+            $table->string('state', 50)->null()->default('');
+            $table->string('zip', 11)->null()->default('');
+            $table->string('transaction_id', 50);
+            $table->float('amount', 10, 2);
+            $table->string('currency');
+            $table->string('payment_status');
             $table->timestamps();
         });
     }

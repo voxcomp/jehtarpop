@@ -14,8 +14,8 @@ class AlterRegistrationAddCard extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-		    $table->string('ponum',50)->nullable()->default('');
-		});
+            $table->string('ponum', 50)->nullable()->default('');
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrationAddCard extends Migration
     public function down()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->dropColumn('ponum');
+            $table->dropColumn('ponum');
         });
     }
 }

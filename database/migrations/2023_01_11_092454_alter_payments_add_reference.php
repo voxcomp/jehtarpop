@@ -14,8 +14,8 @@ class AlterPaymentsAddReference extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-		    $table->string('reference',50)->nullable()->default('');
-		});
+            $table->string('reference', 50)->nullable()->default('');
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterPaymentsAddReference extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-	        $table->dropColumn('reference');
+            $table->dropColumn('reference');
         });
     }
 }

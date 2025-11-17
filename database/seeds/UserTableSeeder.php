@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
-
 use App\User;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
@@ -15,10 +14,10 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->delete();
         $user = User::create([
-        	'usertype' => 'admin',
-        	'name' => 'Admin',
-        	'email' => 'info@gwgci.org',
-        	'password' => bcrypt('password'),
+            'usertype' => 'admin',
+            'name' => 'Admin',
+            'email' => 'info@gwgci.org',
+            'password' => bcrypt('password'),
         ]);
     }
 }

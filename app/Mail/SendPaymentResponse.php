@@ -2,16 +2,17 @@
 
 namespace App\Mail;
 
+use App\Registration;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Registration;
 
 class SendPaymentResponse extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $registration;
+
     public $response;
 
     /**
@@ -23,7 +24,7 @@ class SendPaymentResponse extends Mailable
     {
         $this->registration = $registration;
         $this->response = $response;
-        $this->subject = "GWGCI ".$registration->id." Registration Payment";
+        $this->subject = 'GWGCI '.$registration->id.' Registration Payment';
     }
 
     /**

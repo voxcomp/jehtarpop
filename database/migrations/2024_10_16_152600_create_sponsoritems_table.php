@@ -15,8 +15,8 @@ class CreateSponsoritemsTable extends Migration
     {
         Schema::create('sponsoritems', function (Blueprint $table) {
             $table->id();
-            $table->string('parent',50)->default('');
-            $table->string('name',50)->default('');
+            $table->string('parent', 50)->default('');
+            $table->string('name', 50)->default('');
             $table->integer('qty')->default(0);
             $table->integer('sold')->default(0);
             $table->float('price')->default(0);

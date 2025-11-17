@@ -14,8 +14,8 @@ class AlterCustomersAddBalance extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-		    $table->float('balance',8,2)->nullable()->default(0);
-		});
+            $table->float('balance', 8, 2)->nullable()->default(0);
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterCustomersAddBalance extends Migration
     public function down()
     {
         Schema::table('customers', function (Blueprint $table) {
-	        $table->dropColumn('balance');
+            $table->dropColumn('balance');
         });
     }
 }

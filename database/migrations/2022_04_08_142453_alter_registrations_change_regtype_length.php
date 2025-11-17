@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class AlterRegistrationsChangeRegtypeLength extends Migration
 {
@@ -13,7 +11,7 @@ class AlterRegistrationsChangeRegtypeLength extends Migration
      */
     public function up()
     {
-		\DB::statement("ALTER TABLE registrations MODIFY regtype varchar(20) NULL default 'trade';");
+        \DB::statement("ALTER TABLE registrations MODIFY regtype varchar(20) NULL default 'trade';");
     }
 
     /**
@@ -23,6 +21,6 @@ class AlterRegistrationsChangeRegtypeLength extends Migration
      */
     public function down()
     {
-		\DB::statement("ALTER TABLE registrations MODIFY regtype varchar(10) NULL default 'trade';");
+        \DB::statement("ALTER TABLE registrations MODIFY regtype varchar(10) NULL default 'trade';");
     }
 }

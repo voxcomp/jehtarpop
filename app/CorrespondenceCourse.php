@@ -12,6 +12,6 @@ class CorrespondenceCourse extends Model
      * @var array
      */
     protected $fillable = [
-        'schoolyear', 'location', 'trade', 'courseid', 'member', 'nonmember', 'coursedesc', 'tradedesc'
+        'schoolyear', 'location', 'trade', 'courseid', 'member', 'nonmember', 'coursedesc', 'tradedesc',
     ];
 }

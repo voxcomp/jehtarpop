@@ -2,16 +2,15 @@
 
 namespace App\Notifications;
 
+use App\SupportTicket;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-
-use App\SupportTicket;
 
 class SupportTicketChange extends Notification
 {
     use Queueable;
+
     private $ticket;
 
     /**
@@ -21,7 +20,7 @@ class SupportTicketChange extends Notification
      */
     public function __construct(SupportTicket $ticket)
     {
-        $this->ticket=$ticket;
+        $this->ticket = $ticket;
     }
 
     /**
@@ -44,13 +43,13 @@ class SupportTicketChange extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(config('app.name').' Support Ticket Update')
-                    ->greeting('Support Ticket Update!')
-                    ->line('There has been an update to the support ticket titled:')
-                    ->line($this->ticket->title)
-                    ->line('The current ticket status is '.strtoupper($this->ticket->status))
-                    ->line('The current notification email is '.$this->ticket->email)
-                    ->action('View Support Ticket', route('support.detail',$this->ticket->id));
+            ->subject(config('app.name').' Support Ticket Update')
+            ->greeting('Support Ticket Update!')
+            ->line('There has been an update to the support ticket titled:')
+            ->line($this->ticket->title)
+            ->line('The current ticket status is '.strtoupper($this->ticket->status))
+            ->line('The current notification email is '.$this->ticket->email)
+            ->action('View Support Ticket', route('support.detail', $this->ticket->id));
     }
 
     /**

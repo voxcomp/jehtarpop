@@ -21,21 +21,24 @@ class Setting extends Model
         's_css_property',
         's_value',
         's_type',
-        's_encrypt'
+        's_encrypt',
     ];
-    
-    public function getValueAttribute() {
+
+    public function getValueAttribute()
+    {
         return $this->getSValueAttribute($this->s_value);
     }
-    
-    public function setValueAttribute($value) {
+
+    public function setValueAttribute($value)
+    {
         $this->setSValueAttribute($value);
     }
-    
-    public function getSValueAttribute($value) {
-        switch($this->s_type) {
+
+    public function getSValueAttribute($value)
+    {
+        switch ($this->s_type) {
             case 'numeric':
-                return (float)$value;
+                return (float) $value;
                 break;
             case 'text':
                 return html_entity_decode($value);
@@ -44,15 +47,16 @@ class Setting extends Model
                 return filter_var($value, FILTER_VALIDATE_BOOLEAN);
                 break;
             default:
-                return ($this->s_encrypt)?\Crypt::decrypt($value):$value;
+                return ($this->s_encrypt) ? \Crypt::decrypt($value) : $value;
         }
     }
-    
-    public function setSValueAttribute($value) {
-        if($this->s_type=='text') {
+
+    public function setSValueAttribute($value)
+    {
+        if ($this->s_type == 'text') {
             $this->attributes['s_value'] = htmlentities($value);
         } else {
-            $this->attributes['s_value'] = ($this->s_encrypt)?\Crypt::encrypt($value):$value;
+            $this->attributes['s_value'] = ($this->s_encrypt) ? \Crypt::encrypt($value) : $value;
         }
     }
 }

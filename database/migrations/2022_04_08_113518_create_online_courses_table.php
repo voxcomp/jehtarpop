@@ -15,11 +15,11 @@ class CreateOnlineCoursesTable extends Migration
     {
         Schema::create('online_courses', function (Blueprint $table) {
             $table->id();
-            $table->string('schoolyear',15);
-            $table->string('courseid',200);
-		    $table->string('coursedesc',200)->nullable()->default('');
-            $table->float('member',8,2);
-            $table->float('nonmember',8,2);
+            $table->string('schoolyear', 15);
+            $table->string('courseid', 200);
+            $table->string('coursedesc', 200)->nullable()->default('');
+            $table->float('member', 8, 2);
+            $table->float('nonmember', 8, 2);
             $table->timestamps();
         });
     }

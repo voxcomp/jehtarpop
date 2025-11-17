@@ -14,8 +14,8 @@ class AlterRegistrationsAddDas extends Migration
     public function up()
     {
         Schema::table('registrants', function (Blueprint $table) {
-		    $table->smallInteger('das')->default(0);
-		});
+            $table->smallInteger('das')->default(0);
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrationsAddDas extends Migration
     public function down()
     {
         Schema::table('registrants', function (Blueprint $table) {
-	        $table->dropColumn('das');
+            $table->dropColumn('das');
         });
     }
 }

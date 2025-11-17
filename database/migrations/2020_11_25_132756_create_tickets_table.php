@@ -18,9 +18,9 @@ class CreateTicketsTable extends Migration
             $table->unsignedInteger('ticket_id')->default(0);
             $table->unsignedInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
-            $table->string('name',250);
-            $table->float('member',8,2);
-            $table->float('nonmember',8,2);
+            $table->string('name', 250);
+            $table->float('member', 8, 2);
+            $table->float('nonmember', 8, 2);
             $table->timestamps();
         });
     }

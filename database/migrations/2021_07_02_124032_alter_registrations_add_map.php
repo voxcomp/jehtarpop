@@ -14,8 +14,8 @@ class AlterRegistrationsAddMap extends Migration
     public function up()
     {
         Schema::table('registrants', function (Blueprint $table) {
-		    $table->smallInteger('map')->default(0);
-		});
+            $table->smallInteger('map')->default(0);
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrationsAddMap extends Migration
     public function down()
     {
         Schema::table('registrants', function (Blueprint $table) {
-	        $table->dropColumn('map');
+            $table->dropColumn('map');
         });
     }
 }

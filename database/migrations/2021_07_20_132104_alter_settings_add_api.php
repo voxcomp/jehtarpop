@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class AlterSettingsAddApi extends Migration
 {
@@ -13,7 +11,7 @@ class AlterSettingsAddApi extends Migration
      */
     public function up()
     {
-        \DB::table('settings')->insert([['name'=>'api_login','value'=>''],['name'=>'transaction_key','value'=>'']]);
+        \DB::table('settings')->insert([['name' => 'api_login', 'value' => ''], ['name' => 'transaction_key', 'value' => '']]);
     }
 
     /**
@@ -23,7 +21,7 @@ class AlterSettingsAddApi extends Migration
      */
     public function down()
     {
-	    \DB::table('settings')->where('name','api_login')->delete();
-	    \DB::table('settings')->where('name','transaction_key')->delete();
+        \DB::table('settings')->where('name', 'api_login')->delete();
+        \DB::table('settings')->where('name', 'transaction_key')->delete();
     }
 }

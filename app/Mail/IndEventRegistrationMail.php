@@ -2,19 +2,21 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 use App\Registrant;
 use App\Ticket;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
 
 class IndEventRegistrationMail extends Mailable
 {
     use Queueable, SerializesModels;
-	public $registrant;
-	public $messagestr;
-	public $individual;
+
+    public $registrant;
+
+    public $messagestr;
+
+    public $individual;
 
     /**
      * Create a new message instance.
@@ -23,12 +25,12 @@ class IndEventRegistrationMail extends Mailable
      */
     public function __construct(Registrant $registrant, $messagestr, $individual)
     {
-	   	$registrant->ticket = Ticket::where("ticket_id",$registrant->ticket_id)->first();
-	    $this->registrant = $registrant;
-	    $this->messagestr = $messagestr;
-	    $this->individual = $individual;
-	    
-	    $this->subject = "Class Registration";
+        $registrant->ticket = Ticket::where('ticket_id', $registrant->ticket_id)->first();
+        $this->registrant = $registrant;
+        $this->messagestr = $messagestr;
+        $this->individual = $individual;
+
+        $this->subject = 'Class Registration';
     }
 
     /**

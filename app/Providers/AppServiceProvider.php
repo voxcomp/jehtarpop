@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\SupportTicket;
-use App\SupportTicketNote;
-use App\SupportTicketFile;
-use App\Observers\SupportTicketObserver;
 use App\Observers\SupportTicketFileObserver;
 use App\Observers\SupportTicketNoteObserver;
+use App\Observers\SupportTicketObserver;
+use App\SupportTicket;
+use App\SupportTicketFile;
+use App\SupportTicketNote;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

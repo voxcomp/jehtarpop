@@ -14,8 +14,8 @@ class AlterRegistrationsAddRegtype extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-		    $table->string('regtype',10)->default('trade');
-		});
+            $table->string('regtype', 10)->default('trade');
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrationsAddRegtype extends Migration
     public function down()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->dropColumn('regtype');
+            $table->dropColumn('regtype');
         });
     }
 }

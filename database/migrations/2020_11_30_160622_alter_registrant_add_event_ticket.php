@@ -14,11 +14,11 @@ class AlterRegistrantAddEventTicket extends Migration
     public function up()
     {
         Schema::table('registrants', function (Blueprint $table) {
-		    $table->bigInteger('event_id')->default('0');
-		    $table->string('event',200)->default('');
-		    $table->bigInteger('ticket_id')->default('0');
-		    $table->string('ticket',100)->default('');
-		});
+            $table->bigInteger('event_id')->default('0');
+            $table->string('event', 200)->default('');
+            $table->bigInteger('ticket_id')->default('0');
+            $table->string('ticket', 100)->default('');
+        });
     }
 
     /**
@@ -29,10 +29,10 @@ class AlterRegistrantAddEventTicket extends Migration
     public function down()
     {
         Schema::table('registrants', function (Blueprint $table) {
-	        $table->dropColumn('event_id');
-	        $table->dropColumn('event');
-	        $table->dropColumn('ticket_id');
-	        $table->dropColumn('ticket');
+            $table->dropColumn('event_id');
+            $table->dropColumn('event');
+            $table->dropColumn('ticket_id');
+            $table->dropColumn('ticket');
         });
     }
 }

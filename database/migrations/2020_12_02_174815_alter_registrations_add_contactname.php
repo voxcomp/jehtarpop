@@ -14,9 +14,9 @@ class AlterRegistrationsAddContactname extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-		    $table->string('contactfname',100)->null()->default('');
-		    $table->string('contactlname',100)->null()->default('');
-		});
+            $table->string('contactfname', 100)->null()->default('');
+            $table->string('contactlname', 100)->null()->default('');
+        });
     }
 
     /**
@@ -27,8 +27,8 @@ class AlterRegistrationsAddContactname extends Migration
     public function down()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->dropColumn('contactfname');
-	        $table->dropColumn('contactlname');
+            $table->dropColumn('contactfname');
+            $table->dropColumn('contactlname');
         });
     }
 }

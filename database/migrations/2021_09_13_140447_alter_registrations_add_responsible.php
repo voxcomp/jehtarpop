@@ -14,8 +14,8 @@ class AlterRegistrationsAddResponsible extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-		    $table->string('responsible',50)->nullable()->default('');
-		});
+            $table->string('responsible', 50)->nullable()->default('');
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrationsAddResponsible extends Migration
     public function down()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->dropColumn('responsible');
+            $table->dropColumn('responsible');
         });
     }
 }

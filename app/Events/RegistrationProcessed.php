@@ -2,20 +2,20 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
+use App\Registration;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Registration;
 
 class RegistrationProcessed
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-	public $registration;
-	public $path;
+
+    public $registration;
+
+    public $path;
+
     /**
      * Create a new event instance.
      *

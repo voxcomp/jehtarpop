@@ -15,14 +15,14 @@ class CreateAddpaymentsTable extends Migration
     {
         Schema::create('addpayments', function (Blueprint $table) {
             $table->id();
-            $table->string('name',200);
-            $table->string('address',200)->null()->default('');
-            $table->string('city',200)->null()->default('');
-            $table->string('state',50)->null()->default('');
-            $table->string('zip',11)->null()->default('');
-	        $table->string('transaction_id',50);
-	        $table->float('amount', 10, 2);
-	        $table->string('currency');
+            $table->string('name', 200);
+            $table->string('address', 200)->null()->default('');
+            $table->string('city', 200)->null()->default('');
+            $table->string('state', 50)->null()->default('');
+            $table->string('zip', 11)->null()->default('');
+            $table->string('transaction_id', 50);
+            $table->float('amount', 10, 2);
+            $table->string('currency');
             $table->timestamps();
         });
     }

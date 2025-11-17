@@ -17,11 +17,12 @@ class CreateSupportticketfilesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('support_ticket_id');
             $table->foreign('support_ticket_id')->references('id')->on('support_tickets');
-            $table->string('filename',200)->default('');
-            $table->string('original',200)->default('');
+            $table->string('filename', 200)->default('');
+            $table->string('original', 200)->default('');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *

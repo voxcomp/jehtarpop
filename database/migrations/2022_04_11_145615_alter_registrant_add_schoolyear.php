@@ -14,8 +14,8 @@ class AlterRegistrantAddSchoolyear extends Migration
     public function up()
     {
         Schema::table('registrants', function (Blueprint $table) {
-            $table->string('schoolyear',30)->nullable()->default('');
-		});
+            $table->string('schoolyear', 30)->nullable()->default('');
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrantAddSchoolyear extends Migration
     public function down()
     {
         Schema::table('registrants', function (Blueprint $table) {
-	        $table->dropColumn('schoolyear');
+            $table->dropColumn('schoolyear');
         });
     }
 }

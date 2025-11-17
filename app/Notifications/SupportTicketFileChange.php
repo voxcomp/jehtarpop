@@ -2,16 +2,15 @@
 
 namespace App\Notifications;
 
+use App\SupportTicketFile;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-
-use App\SupportTicketFile;
 
 class SupportTicketFileChange extends Notification
 {
     use Queueable;
+
     private $ticketfile;
 
     /**
@@ -20,9 +19,9 @@ class SupportTicketFileChange extends Notification
      * @return void
      */
     public function __construct(SupportTicketFile $ticketfile)
-     {
-         $this->ticketfile=$ticketfile;
-     }
+    {
+        $this->ticketfile = $ticketfile;
+    }
 
     /**
      * Get the notification's delivery channels.
@@ -42,15 +41,15 @@ class SupportTicketFileChange extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-     {
-         return (new MailMessage)
-                     ->subject(config('app.name').' Support Ticket Update')
-                     ->greeting('Support Ticket Update!')
-                     ->line('There has been an update to the support ticket titled:')
-                     ->line($this->ticketfile->ticket->title)
-                     ->line('The uploaded file is '.strtoupper($this->ticketfile->original))
-                     ->action('View Support Ticket', route('support.detail',$this->ticketfile->ticket->id));
-     }
+    {
+        return (new MailMessage)
+            ->subject(config('app.name').' Support Ticket Update')
+            ->greeting('Support Ticket Update!')
+            ->line('There has been an update to the support ticket titled:')
+            ->line($this->ticketfile->ticket->title)
+            ->line('The uploaded file is '.strtoupper($this->ticketfile->original))
+            ->action('View Support Ticket', route('support.detail', $this->ticketfile->ticket->id));
+    }
 
     /**
      * Get the array representation of the notification.

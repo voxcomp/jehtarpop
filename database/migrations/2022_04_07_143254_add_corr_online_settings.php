@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class AddCorrOnlineSettings extends Migration
 {
@@ -14,10 +12,10 @@ class AddCorrOnlineSettings extends Migration
     public function up()
     {
         \DB::table('settings')->insert([
-	        ['name'=>'onlineregistration','value'=>'true'],
-	        ['name'=>'onlinemessage','value'=>'The class registration is currently closed.'],
-	        ['name'=>'correspondenceregistration','value'=>'true'],
-	        ['name'=>'correspondencemessage','value'=>'The class registration is currently closed.']
+            ['name' => 'onlineregistration', 'value' => 'true'],
+            ['name' => 'onlinemessage', 'value' => 'The class registration is currently closed.'],
+            ['name' => 'correspondenceregistration', 'value' => 'true'],
+            ['name' => 'correspondencemessage', 'value' => 'The class registration is currently closed.'],
         ]);
     }
 
@@ -28,7 +26,7 @@ class AddCorrOnlineSettings extends Migration
      */
     public function down()
     {
-        \DB::table('settings')->where('name','like','online%')->delete();
-        \DB::table('settings')->where('name','like','correspondence%')->delete();
+        \DB::table('settings')->where('name', 'like', 'online%')->delete();
+        \DB::table('settings')->where('name', 'like', 'correspondence%')->delete();
     }
 }

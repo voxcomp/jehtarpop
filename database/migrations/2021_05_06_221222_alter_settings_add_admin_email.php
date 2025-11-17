@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class AlterSettingsAddAdminEmail extends Migration
 {
@@ -13,7 +11,7 @@ class AlterSettingsAddAdminEmail extends Migration
      */
     public function up()
     {
-        \DB::table('settings')->insert([['name'=>'ADMIN_EMAIL','value'=>'crystal@gwgci.org'],['name'=>'ADMIN_EMAIL2','value'=>'jeff@gwgci.org']]);
+        \DB::table('settings')->insert([['name' => 'ADMIN_EMAIL', 'value' => 'crystal@gwgci.org'], ['name' => 'ADMIN_EMAIL2', 'value' => 'jeff@gwgci.org']]);
     }
 
     /**
@@ -23,6 +21,6 @@ class AlterSettingsAddAdminEmail extends Migration
      */
     public function down()
     {
-	    \DB::table('settings')->where('name','like','ADMIN_EMAIL%')->delete();
+        \DB::table('settings')->where('name', 'like', 'ADMIN_EMAIL%')->delete();
     }
 }

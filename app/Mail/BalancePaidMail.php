@@ -2,18 +2,19 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 use App\Payment;
 use App\Student;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
 
 class BalancePaidMail extends Mailable
 {
     use Queueable, SerializesModels;
-	public $student;
-	public $payment;
+
+    public $student;
+
+    public $payment;
 
     /**
      * Create a new message instance.
@@ -22,10 +23,10 @@ class BalancePaidMail extends Mailable
      */
     public function __construct(Student $student, Payment $payment)
     {
-	    $this->student = $student;
-	    $this->payment = $payment;
-	    
-	    $this->subject = "Balance Payment";
+        $this->student = $student;
+        $this->payment = $payment;
+
+        $this->subject = 'Balance Payment';
     }
 
     /**

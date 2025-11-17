@@ -14,9 +14,9 @@ class AddTradedescCourses extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-		    $table->string('tradedesc',200)->nullable()->default('');
-		    $table->string('coursedesc',200)->nullable()->default('');
-		});
+            $table->string('tradedesc', 200)->nullable()->default('');
+            $table->string('coursedesc', 200)->nullable()->default('');
+        });
     }
 
     /**
@@ -27,8 +27,8 @@ class AddTradedescCourses extends Migration
     public function down()
     {
         Schema::table('courses', function (Blueprint $table) {
-	        $table->dropColumn('tradedesc');
-	        $table->dropColumn('coursedesc');
+            $table->dropColumn('tradedesc');
+            $table->dropColumn('coursedesc');
         });
     }
 }

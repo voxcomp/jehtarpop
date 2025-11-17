@@ -2,16 +2,15 @@
 
 namespace App\Mail;
 
+use App\Registration;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Registration;
-
 
 class SendPaymentConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $registration;
 
     /**
@@ -22,7 +21,7 @@ class SendPaymentConfirmation extends Mailable
     public function __construct(Registration $registration)
     {
         $this->registration = $registration;
-        $this->subject = "GWGCI ".$registration->id." Registration Confirmation";
+        $this->subject = 'GWGCI '.$registration->id.' Registration Confirmation';
     }
 
     /**

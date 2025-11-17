@@ -17,10 +17,10 @@ class CreateEventTable extends Migration
             $table->id();
             $table->unsignedInteger('event_id')->default(0);
             $table->unsignedInteger('startdate');
-            $table->string('name',250);
-            $table->string('contact',250);
-            $table->string('location',350);
-            $table->string('city',100);
+            $table->string('name', 250);
+            $table->string('contact', 250);
+            $table->string('location', 350);
+            $table->string('city', 100);
             $table->integer('minimum')->default(0);
             $table->integer('maximum')->default(100000);
             $table->timestamps();

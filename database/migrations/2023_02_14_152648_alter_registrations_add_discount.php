@@ -14,9 +14,9 @@ class AlterRegistrationsAddDiscount extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-            $table->float('discount',10,2)->default(0);
-		    $table->string('coupon',100)->null()->default('');
-		});
+            $table->float('discount', 10, 2)->default(0);
+            $table->string('coupon', 100)->null()->default('');
+        });
     }
 
     /**
@@ -27,8 +27,8 @@ class AlterRegistrationsAddDiscount extends Migration
     public function down()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->dropColumn('coupon');
-	        $table->dropColumn('discount');
+            $table->dropColumn('coupon');
+            $table->dropColumn('discount');
         });
     }
 }

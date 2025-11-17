@@ -12,6 +12,6 @@ class OnlineCourse extends Model
      * @var array
      */
     protected $fillable = [
-        'schoolyear', 'courseid', 'coursedesc', 'member', 'nonmember'
+        'schoolyear', 'courseid', 'coursedesc', 'member', 'nonmember',
     ];
 }

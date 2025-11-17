@@ -14,11 +14,11 @@ class AlterSettingsTable extends Migration
     public function up()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->string('s_name',150)->nullable();
-            $table->string('s_display',150)->nullable()->default('');
-            $table->string('s_group',150)->default('general');
-            $table->string('s_css_selector',150)->nullable();
-            $table->string('s_css_property',150)->nullable();
+            $table->string('s_name', 150)->nullable();
+            $table->string('s_display', 150)->nullable()->default('');
+            $table->string('s_group', 150)->default('general');
+            $table->string('s_css_selector', 150)->nullable();
+            $table->string('s_css_property', 150)->nullable();
             $table->longText('s_value');
             $table->text('s_type')->nullable(false);
             $table->boolean('s_encrypt')->default(false);

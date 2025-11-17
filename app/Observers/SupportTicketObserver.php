@@ -2,15 +2,14 @@
 
 namespace App\Observers;
 
-use App\SupportTicket;
 use App\Notifications\SupportTicketChange;
+use App\SupportTicket;
 
 class SupportTicketObserver
 {
     /**
      * Handle the support ticket "created" event.
      *
-     * @param  \App\SupportTicket  $supportTicket
      * @return void
      */
     public function created(SupportTicket $supportTicket)
@@ -22,7 +21,6 @@ class SupportTicketObserver
     /**
      * Handle the support ticket "updated" event.
      *
-     * @param  \App\SupportTicket  $supportTicket
      * @return void
      */
     public function updated(SupportTicket $supportTicket)
@@ -34,7 +32,6 @@ class SupportTicketObserver
     /**
      * Handle the support ticket "deleted" event.
      *
-     * @param  \App\SupportTicket  $supportTicket
      * @return void
      */
     public function deleted(SupportTicket $supportTicket)
@@ -45,7 +42,6 @@ class SupportTicketObserver
     /**
      * Handle the support ticket "restored" event.
      *
-     * @param  \App\SupportTicket  $supportTicket
      * @return void
      */
     public function restored(SupportTicket $supportTicket)
@@ -56,7 +52,6 @@ class SupportTicketObserver
     /**
      * Handle the support ticket "force deleted" event.
      *
-     * @param  \App\SupportTicket  $supportTicket
      * @return void
      */
     public function forceDeleted(SupportTicket $supportTicket)

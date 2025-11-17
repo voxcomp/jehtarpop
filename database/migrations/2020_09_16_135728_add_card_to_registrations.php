@@ -14,8 +14,8 @@ class AddCardToRegistrations extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->string('cardno',4)->nullable()->default('');
-	        $table->string('cardtype',20)->nullable()->default('');
+            $table->string('cardno', 4)->nullable()->default('');
+            $table->string('cardtype', 20)->nullable()->default('');
         });
     }
 
@@ -27,8 +27,8 @@ class AddCardToRegistrations extends Migration
     public function down()
     {
         Schema::table('registrations', function (Blueprint $table) {
-	        $table->dropColumn('cardno');
-	        $table->dropColumn('cardtype');
+            $table->dropColumn('cardno');
+            $table->dropColumn('cardtype');
         });
     }
 }

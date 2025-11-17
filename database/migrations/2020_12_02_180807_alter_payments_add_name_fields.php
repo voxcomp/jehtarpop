@@ -14,9 +14,9 @@ class AlterPaymentsAddNameFields extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-		    $table->string('firstname',100)->nullable()->default('');
-		    $table->string('lastname',100)->nullable()->default('');
-		});
+            $table->string('firstname', 100)->nullable()->default('');
+            $table->string('lastname', 100)->nullable()->default('');
+        });
     }
 
     /**
@@ -27,8 +27,8 @@ class AlterPaymentsAddNameFields extends Migration
     public function down()
     {
         Schema::table('payments', function (Blueprint $table) {
-	        $table->dropColumn('firstname');
-	        $table->dropColumn('lastname');
+            $table->dropColumn('firstname');
+            $table->dropColumn('lastname');
         });
     }
 }

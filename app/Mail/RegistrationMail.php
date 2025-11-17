@@ -2,36 +2,40 @@
 
 namespace App\Mail;
 
+use App\Registrant;
+use App\Registration;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Registration;
-use App\Registrant;
 
 class RegistrationMail extends Mailable
 {
     use Queueable, SerializesModels;
-	public $registration;
-	public $messagestr='';
-	public $individual=false;
-	public $registrant;
-	public $path='event';
+
+    public $registration;
+
+    public $messagestr = '';
+
+    public $individual = false;
+
+    public $registrant;
+
+    public $path = 'event';
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($path, Registration $registration, $messagestr, $individual, Registrant $registrant=null)
+    public function __construct($path, Registration $registration, $messagestr, $individual, ?Registrant $registrant = null)
     {
-	    $this->registration = $registration;
-	    $this->messagestr = $messagestr;
-	    $this->individual = $individual;
-	    $this->path = $path;
-	    $this->registrant = $registrant;
-	    
-	    $this->subject = ucfirst($path)." Registration";
+        $this->registration = $registration;
+        $this->messagestr = $messagestr;
+        $this->individual = $individual;
+        $this->path = $path;
+        $this->registrant = $registrant;
+
+        $this->subject = ucfirst($path).' Registration';
     }
 
     /**

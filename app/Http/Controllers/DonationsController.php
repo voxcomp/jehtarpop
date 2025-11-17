@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\hostedPaymentRepository;
-use Illuminate\Support\Carbon;
-
-use Illuminate\Http\Request;
 use App\Donation;
+use App\Http\Repositories\hostedPaymentRepository;
 use App\Sponsoritem;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DonationsController extends Controller
 {
@@ -16,19 +14,21 @@ class DonationsController extends Controller
     {
         parent::__construct();
     }
-    
-    public function showPage() {
+
+    public function showPage()
+    {
         return view('donations.page');
     }
-    
-    public function submitDonation(Request $request) {
-        if(!(isset($request->inkind) && $request->inkind=='101')) {
-            $isDonationExist = Donation::where('sponsor',0)->where('clientip',\Request::ip())->where('created_at','>',Carbon::now()->subMinutes(2)->toDateTimeString())->first();
+
+    public function submitDonation(Request $request)
+    {
+        if (! (isset($request->inkind) && $request->inkind == '101')) {
+            $isDonationExist = Donation::where('sponsor', 0)->where('clientip', \Request::ip())->where('created_at', '>', Carbon::now()->subMinutes(2)->toDateTimeString())->first();
         } else {
-            $isDonationExist=null;
+            $isDonationExist = null;
         }
-        if(!$isDonationExist) {
-            $this->validate($request,[
+        if (! $isDonationExist) {
+            $this->validate($request, [
                 'firstname' => 'required|string|max:50',
                 'lastname' => 'required|string|max:75',
                 'title' => 'nullable|string|max:75',
@@ -52,75 +52,84 @@ class DonationsController extends Controller
                 'state' => $request->input('state'),
                 'zip' => $request->input('zip'),
                 'amount' => $request->input('amount'),
-                'clientip' => \Request::ip()
+                'clientip' => \Request::ip(),
             ]);
-            if($donation) {
-                if(isset($request->inkind) && $request->inkind=='101') {
+            if ($donation) {
+                if (isset($request->inkind) && $request->inkind == '101') {
                     $donation->paid = $donation->amount;
                     $donation->paytype = 'inkind';
                     $donation->save();
-                    return redirect()->route('donations.confirmation',$donation->id);
+
+                    return redirect()->route('donations.confirmation', $donation->id);
                 } else {
-                    return redirect()->route('donations.payment',$donation->id);
+                    return redirect()->route('donations.payment', $donation->id);
                 }
             } else {
-                return redirect()->route('donations.page')->with('message','There was an error saving your donation.');
+                return redirect()->route('donations.page')->with('message', 'There was an error saving your donation.');
             }
         } else {
-            return redirect()->route('donations.page')->with('message','It seems you already submitted a donation.');
+            return redirect()->route('donations.page')->with('message', 'It seems you already submitted a donation.');
         }
     }
-    
-    public function showPayment(Donation $donation) {
+
+    public function showPayment(Donation $donation)
+    {
         $anpay = new hostedPaymentRepository;
-    
+
         $token = $anpay->getHostedFormTokenFromPayment($donation);
-         
-        return view('donations.payment',compact('token','donation'));
+
+        return view('donations.payment', compact('token', 'donation'));
     }
-    
-    public function submitPayment(Request $request, Donation $donation) {
-        if($donation->id!=72682) {
+
+    public function submitPayment(Request $request, Donation $donation)
+    {
+        if ($donation->id != 72682) {
             $donation->paid = $request->paid;
-            $donation->cardno = substr($request->card,-4);
-            $donation->cardtype = (($request->cardtype=='eCheck')?'eCheck':'credit');
+            $donation->cardno = substr($request->card, -4);
+            $donation->cardtype = (($request->cardtype == 'eCheck') ? 'eCheck' : 'credit');
             $donation->save();
-            \Mail::to($this->settings->get('ADMIN_EMAIL','general'))->send(new \App\Mail\DonationMail($donation));
-            \Mail::to($this->settings->get('ADMIN_EMAIL2','general'))->send(new \App\Mail\DonationMail($donation));
+            \Mail::to($this->settings->get('ADMIN_EMAIL', 'general'))->send(new \App\Mail\DonationMail($donation));
+            \Mail::to($this->settings->get('ADMIN_EMAIL2', 'general'))->send(new \App\Mail\DonationMail($donation));
         }
-        
-        return redirect()->route('donations.confirmation',$donation->id);
+
+        return redirect()->route('donations.confirmation', $donation->id);
     }
-    
-    public function showConfirmation(Donation $donation) {
-        return view('donations.confirmation',compact('donation'));
+
+    public function showConfirmation(Donation $donation)
+    {
+        return view('donations.confirmation', compact('donation'));
     }
-    
-    public function showProgress() {
-        $total = (int)number_format(Donation::get()->sum('paid'),2,'.','');
-        $goal= (int)number_format($this->settings->get('fund_goal','donation'),0,'.','');
-        $percent = (int)ceil(29*($total/$goal));
-        $total = "$".number_format($total,0);
-        return view('donations.progress',compact("total","goal","percent"));
+
+    public function showProgress()
+    {
+        $total = (int) number_format(Donation::get()->sum('paid'), 2, '.', '');
+        $goal = (int) number_format($this->settings->get('fund_goal', 'donation'), 0, '.', '');
+        $percent = (int) ceil(29 * ($total / $goal));
+        $total = '$'.number_format($total, 0);
+
+        return view('donations.progress', compact('total', 'goal', 'percent'));
     }
-    
+
     /******************************/
     /******************* Sponsors *************************************************************************************************************************/
     /******************************/
-    
-    public function showSponsorPage() {
+
+    public function showSponsorPage()
+    {
         $items = Sponsoritem::get();
-        return view('sponsors.page',compact("items"));
+
+        return view('sponsors.page', compact('items'));
     }
-    
-    public function submitSponsor(Request $request) {
-        if(!(isset($request->inkind) && $request->inkind=='101')) {
-            $isDonationExist = Donation::where('sponsor',1)->where('clientip',\Request::ip())->where('created_at','>',Carbon::now()->subMinutes(2)->toDateTimeString())->first();
+
+    public function submitSponsor(Request $request)
+    {
+        if (! (isset($request->inkind) && $request->inkind == '101')) {
+            $isDonationExist = Donation::where('sponsor', 1)->where('clientip', \Request::ip())->where('created_at', '>', Carbon::now()->subMinutes(2)->toDateTimeString())->first();
         } else {
-            $isDonationExist=null;
+            $isDonationExist = null;
         }
-        if(!$isDonationExist) {
-            $this->validate($request,[
+        if (! $isDonationExist) {
+            $this->validate($request, [
                 'logo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
                 'firstname' => 'required|string|max:50',
                 'lastname' => 'required|string|max:75',
@@ -132,15 +141,15 @@ class DonationsController extends Controller
                 'state' => 'required|string|max:20',
                 'zip' => 'required|string|max:20',
             ]);
-            $sponsoritem = Sponsoritem::where('id',$request->sponsoritem)->first();
-            if(!is_null($sponsoritem)) {
+            $sponsoritem = Sponsoritem::where('id', $request->sponsoritem)->first();
+            if (! is_null($sponsoritem)) {
                 $sponsoritem->sold += 1;
                 $sponsoritem->save();
-                if($request->file()) {
-                    $fileName = time().'_'.str_replace([" ","/","\\","'",'"'],['','','','',''],$request->logo->getClientOriginalName());
+                if ($request->file()) {
+                    $fileName = time().'_'.str_replace([' ', '/', '\\', "'", '"'], ['', '', '', '', ''], $request->logo->getClientOriginalName());
                     $filePath = $request->file('logo')->storeAs('logo', $fileName, 'public');
                     $file = time().'_'.$request->logo->getClientOriginalName();
-                    $image = '/storage/' . $filePath;
+                    $image = '/storage/'.$filePath;
                 }
                 $donation = Donation::create([
                     'fname' => $request->input('firstname'),
@@ -157,72 +166,79 @@ class DonationsController extends Controller
                     'options' => $sponsoritem->name,
                     'sponsor' => 1,
                     'clientip' => \Request::ip(),
-                    'paytype' => 'hold'
+                    'paytype' => 'hold',
                 ]);
-                if(isset($image)) {
+                if (isset($image)) {
                     $donation->logo = $image;
                     $donation->save();
                 }
-                if($donation) {
-                    if(isset($request->inkind) && $request->inkind=='101') {
+                if ($donation) {
+                    if (isset($request->inkind) && $request->inkind == '101') {
                         $donation->paid = $donation->amount;
                         $donation->paytype = 'inkind';
                         $donation->save();
-                        \Mail::to($this->settings->get('ADMIN_EMAIL','general'))->send(new \App\Mail\SponsorMail($donation));
-                        \Mail::to($this->settings->get('ADMIN_EMAIL2','general'))->send(new \App\Mail\SponsorMail($donation));
-                        return redirect()->route('sponsor.confirmation',$donation->id);
+                        \Mail::to($this->settings->get('ADMIN_EMAIL', 'general'))->send(new \App\Mail\SponsorMail($donation));
+                        \Mail::to($this->settings->get('ADMIN_EMAIL2', 'general'))->send(new \App\Mail\SponsorMail($donation));
+
+                        return redirect()->route('sponsor.confirmation', $donation->id);
                     } else {
-                        if($donation->amount<$this->settings->get('payment_limit','donation')) {
-                            return redirect()->route('sponsor.payment',$donation->id);
+                        if ($donation->amount < $this->settings->get('payment_limit', 'donation')) {
+                            return redirect()->route('sponsor.payment', $donation->id);
                         } else {
                             $donation->paid = $donation->amount;
                             $donation->paytype = 'check';
                             $donation->save();
-                            \Mail::to($this->settings->get('ADMIN_EMAIL','general'))->send(new \App\Mail\SponsorMail($donation));
-                            \Mail::to($this->settings->get('ADMIN_EMAIL2','general'))->send(new \App\Mail\SponsorMail($donation));
-                            return redirect()->route('sponsor.confirmation',$donation->id);
+                            \Mail::to($this->settings->get('ADMIN_EMAIL', 'general'))->send(new \App\Mail\SponsorMail($donation));
+                            \Mail::to($this->settings->get('ADMIN_EMAIL2', 'general'))->send(new \App\Mail\SponsorMail($donation));
+
+                            return redirect()->route('sponsor.confirmation', $donation->id);
                         }
                     }
                 } else {
-                    return redirect()->back()->withInput(\Input::all())->with('message','There was an error saving your donation.');
+                    return redirect()->back()->withInput(\Input::all())->with('message', 'There was an error saving your donation.');
                 }
             } else {
-                return redirect()->back()->withInput(\Input::all())->with('message',"A sponsorship item must be chosen");
+                return redirect()->back()->withInput(\Input::all())->with('message', 'A sponsorship item must be chosen');
             }
         } else {
-            return redirect()->route('sponsor.page')->with('message','It seems you already submitted a donation.');
+            return redirect()->route('sponsor.page')->with('message', 'It seems you already submitted a donation.');
         }
     }
-    
-    public function submitSponsorPaymentAlternate(Request $request, Donation $donation) {
+
+    public function submitSponsorPaymentAlternate(Request $request, Donation $donation)
+    {
         $donation->paid = $donation->amount;
         $donation->paytype = 'check';
         $donation->save();
-        \Mail::to($this->settings->get('ADMIN_EMAIL','general'))->send(new \App\Mail\SponsorMail($donation));
-        \Mail::to($this->settings->get('ADMIN_EMAIL2','general'))->send(new \App\Mail\SponsorMail($donation));
-        return redirect()->route('sponsor.confirmation',$donation->id);
+        \Mail::to($this->settings->get('ADMIN_EMAIL', 'general'))->send(new \App\Mail\SponsorMail($donation));
+        \Mail::to($this->settings->get('ADMIN_EMAIL2', 'general'))->send(new \App\Mail\SponsorMail($donation));
+
+        return redirect()->route('sponsor.confirmation', $donation->id);
     }
 
-    public function showSponsorPayment(Donation $donation) {
+    public function showSponsorPayment(Donation $donation)
+    {
         $anpay = new hostedPaymentRepository;
-    
+
         $token = $anpay->getHostedFormTokenFromPayment($donation);
-         
-        return view('sponsors.payment',compact('token','donation'));
+
+        return view('sponsors.payment', compact('token', 'donation'));
     }
-    
-    public function submitSponsorPayment(Request $request, Donation $donation) {
+
+    public function submitSponsorPayment(Request $request, Donation $donation)
+    {
         $donation->paid = $request->paid;
-        $donation->cardno = substr($request->card,-4);
-        $donation->cardtype = $donation->paytype = (($request->cardtype=='eCheck')?'eCheck':'credit');
+        $donation->cardno = substr($request->card, -4);
+        $donation->cardtype = $donation->paytype = (($request->cardtype == 'eCheck') ? 'eCheck' : 'credit');
         $donation->save();
-        \Mail::to($this->settings->get('ADMIN_EMAIL','general'))->send(new \App\Mail\SponsorMail($donation));
-        \Mail::to($this->settings->get('ADMIN_EMAIL2','general'))->send(new \App\Mail\SponsorMail($donation));
-        
+        \Mail::to($this->settings->get('ADMIN_EMAIL', 'general'))->send(new \App\Mail\SponsorMail($donation));
+        \Mail::to($this->settings->get('ADMIN_EMAIL2', 'general'))->send(new \App\Mail\SponsorMail($donation));
+
         return redirect()->route('sponsor.confirmation',$donation->id);
     }
 
-    public function showSponsorConfirmation(Donation $donation) {
+    public function showSponsorConfirmation(Donation $donation)
+    {
         return view('sponsors.confirmation',compact('donation'));
     }
 }

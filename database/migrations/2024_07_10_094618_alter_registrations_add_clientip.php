@@ -14,7 +14,7 @@ class AlterRegistrationsAddClientip extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-            $table->string('clientip',20)->default('');
+            $table->string('clientip', 20)->default('');
         });
     }
 

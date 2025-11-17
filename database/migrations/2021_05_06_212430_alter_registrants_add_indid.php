@@ -14,8 +14,8 @@ class AlterRegistrantsAddIndid extends Migration
     public function up()
     {
         Schema::table('registrants', function (Blueprint $table) {
-		    $table->string('indid')->nullable()->default(0);
-		});
+            $table->string('indid')->nullable()->default(0);
+        });
     }
 
     /**
@@ -26,7 +26,7 @@ class AlterRegistrantsAddIndid extends Migration
     public function down()
     {
         Schema::table('registrants', function (Blueprint $table) {
-	        $table->dropColumn('indid');
+            $table->dropColumn('indid');
         });
     }
 }

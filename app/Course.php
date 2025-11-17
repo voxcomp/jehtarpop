@@ -12,11 +12,11 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'schoolyear', 'location', 'trade', 'courseid', 'member', 'nonmember', 'coursedesc', 'tradedesc'
+        'schoolyear', 'location', 'trade', 'courseid', 'member', 'nonmember', 'coursedesc', 'tradedesc',
     ];
-    
+
     public function description()
     {
-        return $this->hasOne('App\Description','courseid','courseid');
+        return $this->hasOne('App\Description', 'courseid', 'courseid');
     }
 }
