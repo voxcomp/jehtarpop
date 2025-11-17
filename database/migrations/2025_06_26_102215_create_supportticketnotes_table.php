@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSupportticketnotesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('support_ticket_notes', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('support_ticket_id');
+            $table->foreign('support_ticket_id')->references('id')->on('support_tickets');
+            $table->text('description');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('support_ticket_notes');
+    }
+}

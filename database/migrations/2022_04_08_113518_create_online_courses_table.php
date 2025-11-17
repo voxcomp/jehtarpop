@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateOnlineCoursesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('online_courses', function (Blueprint $table) {
+            $table->id();
+            $table->string('schoolyear',15);
+            $table->string('courseid',200);
+		    $table->string('coursedesc',200)->nullable()->default('');
+            $table->float('member',8,2);
+            $table->float('nonmember',8,2);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('online_courses');
+    }
+}

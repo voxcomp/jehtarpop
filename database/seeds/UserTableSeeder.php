@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+use App\User;
+
+class UserTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('users')->delete();
+        $user = User::create([
+        	'usertype' => 'admin',
+        	'name' => 'Admin',
+        	'email' => 'info@gwgci.org',
+        	'password' => bcrypt('password'),
+        ]);
+    }
+}
