@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\hostedPaymentRepository;
 use App\Models\CorrespondenceCourse;
 use App\Models\Course;
 use App\Models\Customer;
 use App\Models\Event;
-use App\Http\Repositories\hostedPaymentRepository;
 use App\Models\OnlineCourse;
 use App\Models\Registrant;
 use App\Models\Registration;

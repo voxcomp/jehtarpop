@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Notifications\SupportTicketChange;
 use App\Models\SupportTicket;
+use App\Notifications\SupportTicketChange;
 
 class SupportTicketObserver
 {

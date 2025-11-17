@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Notifications\SupportTicketFileChange;
 use App\Models\SupportTicketFile;
+use App\Notifications\SupportTicketFileChange;
 
 class SupportTicketFileObserver
 {

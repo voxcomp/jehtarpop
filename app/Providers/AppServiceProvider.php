@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Observers\SupportTicketFileObserver;
-use App\Observers\SupportTicketNoteObserver;
-use App\Observers\SupportTicketObserver;
 use App\Models\SupportTicket;
 use App\Models\SupportTicketFile;
 use App\Models\SupportTicketNote;
+use App\Observers\SupportTicketFileObserver;
+use App\Observers\SupportTicketNoteObserver;
+use App\Observers\SupportTicketObserver;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Coupon;
 use App\Events\RegistrationProcessed;
 use App\Http\Repositories\hostedPaymentRepository;
 use App\Http\Requests\CardVerificationRequest;
+use App\Models\Coupon;
 use App\Models\Payment;
 use App\Models\Registrant;
 use App\Models\Registration;
