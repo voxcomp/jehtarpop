@@ -178,10 +178,10 @@ Route::post('ajax/course/cost/{path}/{course}', [HomeController::class, 'getCour
 Route::post('ajax/course/student/cost/{course}/{customer?}', [HomeController::class, 'getStudentCourseCost']);
 Route::post('ajax/event/tickets/{event}', [HomeController::class, 'getEventTickets']);
 Route::post('ajax/event/cost/{ticket}/{customer?}', [HomeController::class, 'getEventCost']);
-Route::post('ajax/coupon/{coupon}/{path}',[HomeController::class, 'coupon']);
+Route::post('ajax/coupon/{coupon}/{path}', [HomeController::class, 'coupon']);
 Route::post('ajax/admin/response/{registration}', [HomeController::class, 'ajaxSendResponse']);
 Route::post('ajax/admin/confirmation/{registration}', [HomeController::class, 'ajaxSendConfirmation']);
-Route::post('ajax/class/description/{course}',[HomeController::class, 'getClassDescription']);
-Route::get('ajax/class/description/{course}',[HomeController::class, 'getClassDescription']);
+Route::post('ajax/class/description/{course}', [HomeController::class, 'getClassDescription']);
+Route::get('ajax/class/description/{course}', [HomeController::class, 'getClassDescription']);
 
 // Route::get('ajax/course/student/cost/{course}/{customer?}','HomeController@getStudentCourseCost');
