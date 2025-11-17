@@ -12,11 +12,11 @@ class Registrant extends Model
 
     public function registration()
     {
-        return $this->belongsTo('App\Registration');
+        return $this->belongsTo(\App\Registration::class);
     }
 
     public function myticket()
     {
-        return $this->hasOne('App\Ticket', 'ticket_id', 'id');
+        return $this->hasOne(\App\Ticket::class, 'ticket_id', 'id');
     }
 }

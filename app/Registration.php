@@ -12,12 +12,12 @@ class Registration extends Model
 
     public function registrants()
     {
-        return $this->hasMany('App\Registrant', 'registration_id', 'id');
+        return $this->hasMany(\App\Registrant::class, 'registration_id', 'id');
     }
 
     public function payment()
     {
-        return $this->hasMany('App\Payment');
+        return $this->hasMany(\App\Payment::class);
     }
 
     public function isTrade()

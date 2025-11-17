@@ -12,6 +12,6 @@ class Payment extends Model
 
     public function registration()
     {
-        return $this->belongsTo('App\Registration');
+        return $this->belongsTo(\App\Registration::class);
     }
 }

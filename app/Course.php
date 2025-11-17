@@ -17,6 +17,6 @@ class Course extends Model
 
     public function description()
     {
-        return $this->hasOne('App\Description', 'courseid', 'courseid');
+        return $this->hasOne(\App\Description::class, 'courseid', 'courseid');
     }
 }
