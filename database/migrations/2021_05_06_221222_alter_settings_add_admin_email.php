@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AlterSettingsAddAdminEmail extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -23,4 +23,4 @@ class AlterSettingsAddAdminEmail extends Migration
     {
         \DB::table('settings')->where('name', 'like', 'ADMIN_EMAIL%')->delete();
     }
-}
+};

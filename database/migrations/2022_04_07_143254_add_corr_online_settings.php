@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddCorrOnlineSettings extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -29,4 +29,4 @@ class AddCorrOnlineSettings extends Migration
         \DB::table('settings')->where('name', 'like', 'online%')->delete();
         \DB::table('settings')->where('name', 'like', 'correspondence%')->delete();
     }
-}
+};

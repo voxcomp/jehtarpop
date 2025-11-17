@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AlterSettingsAddEvents extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -68,4 +68,4 @@ class AlterSettingsAddEvents extends Migration
         \DB::table('settings')->where('s_name', 'trainingregistration')->delete();
         \DB::table('settings')->where('s_name', 'trainingmessage')->delete();
     }
-}
+};

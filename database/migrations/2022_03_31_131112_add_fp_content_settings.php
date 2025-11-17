@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AddFpContentSettings extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -28,4 +28,4 @@ class AddFpContentSettings extends Migration
     {
         \DB::table('settings')->where('name', 'like', 'fp_%')->delete();
     }
-}
+};

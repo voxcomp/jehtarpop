@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AlterSettingsAddApi extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -24,4 +24,4 @@ class AlterSettingsAddApi extends Migration
         \DB::table('settings')->where('name', 'api_login')->delete();
         \DB::table('settings')->where('name', 'transaction_key')->delete();
     }
-}
+};

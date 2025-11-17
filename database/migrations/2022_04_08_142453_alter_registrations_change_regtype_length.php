@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AlterRegistrationsChangeRegtypeLength extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -23,4 +23,4 @@ class AlterRegistrationsChangeRegtypeLength extends Migration
     {
         \DB::statement("ALTER TABLE registrations MODIFY regtype varchar(10) NULL default 'trade';");
     }
-}
+};

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class AlterSettingsAddConfirmation extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -69,4 +69,4 @@ class AlterSettingsAddConfirmation extends Migration
         \DB::table('settings')->where('s_name', 'eventconfirmation')->delete();
         \DB::table('settings')->where('s_name', 'onlineconfirmation')->delete();
     }
-}
+};
