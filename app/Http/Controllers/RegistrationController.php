@@ -506,18 +506,18 @@ class RegistrationController extends Controller
             $anpay = new hostedPaymentRepository;
             $token = $anpay->getHostedFormTokenFromPayment($payment);
 
-            return view('registration.payment-auth',compact('token','registration','path','payment'));
+            return view('registration.payment-auth', compact('token', 'registration', 'path', 'payment'));
         } else {
-            return \Redirect::route('registration.company',$path)->with('message','The specified registration already has a payment applied.');
+            return \Redirect::route('registration.company', $path)->with('message', 'The specified registration already has a payment applied.');
         }
     }
 
     // ********************************************
     // ************ CONFIRMATION
 
-    public function confirmation($path,Registration $registration)
+    public function confirmation($path, Registration $registration)
     {
         // \Mail::to("gwgci@voxcomp.com")->send(new \App\Mail\SendPaymentConfirmation($registration));
-        return view('registration.confirmation',compact('path','registration'));
+        return view('registration.confirmation', compact('path', 'registration'));
     }
 }

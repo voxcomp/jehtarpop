@@ -786,9 +786,9 @@ class PaymentController extends Controller
                 // \Mail::to($this->settings->get('ADMIN_EMAIL2','general'))->send(new \App\Mail\FreePaidMail($payment));
             }
 
-            return view('freePayment-confirmation',compact('payment'));
+            return view('freePayment-confirmation', compact('payment'));
         } else {
-            return \Redirect::route('freePaymentForm')->with('message','The amount must be greater than zero.');
+            return \Redirect::route('freePaymentForm')->with('message', 'The amount must be greater than zero.');
         }
     }
 }

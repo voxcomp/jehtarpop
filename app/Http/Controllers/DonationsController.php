@@ -234,11 +234,11 @@ class DonationsController extends Controller
         \Mail::to($this->settings->get('ADMIN_EMAIL', 'general'))->send(new \App\Mail\SponsorMail($donation));
         \Mail::to($this->settings->get('ADMIN_EMAIL2', 'general'))->send(new \App\Mail\SponsorMail($donation));
 
-        return redirect()->route('sponsor.confirmation',$donation->id);
+        return redirect()->route('sponsor.confirmation', $donation->id);
     }
 
     public function showSponsorConfirmation(Donation $donation)
     {
-        return view('sponsors.confirmation',compact('donation'));
+        return view('sponsors.confirmation', compact('donation'));
     }
 }

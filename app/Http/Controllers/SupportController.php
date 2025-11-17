@@ -218,6 +218,6 @@ class SupportController extends Controller
     {
         $file->delete();
 
-        return back()->with('message','File deleted successfully');
+        return back()->with('message', 'File deleted successfully');
     }
 }

@@ -626,7 +626,7 @@ class AdminController extends Controller
             $coupon->update($updatable);
         }
 
-        return redirect()->route('admin.coupons')->with('message','Discount Code has been saved.');
+        return redirect()->route('admin.coupons')->with('message', 'Discount Code has been saved.');
     }
 
     /**

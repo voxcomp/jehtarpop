@@ -8,8 +8,8 @@ use App\Observers\SupportTicketObserver;
 use App\SupportTicket;
 use App\SupportTicketFile;
 use App\SupportTicketNote;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
         SupportTicket::observe(SupportTicketObserver::class);
         SupportTicketNote::observe(SupportTicketNoteObserver::class);
         SupportTicketFile::observe(SupportTicketFileObserver::class);
-	Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
     }
 }
