@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
-use App\Registrant;
-use App\Ticket;
+use App\Models\Registrant;
+use App\Models\Ticket;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

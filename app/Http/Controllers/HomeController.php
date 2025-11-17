@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\CorrespondenceCourse;
-use App\Coupon;
-use App\Course;
-use App\Customer;
-use App\Description;
-use App\Event;
-use App\OnlineCourse;
-use App\Registration;
-use App\Student;
-use App\Ticket;
+use App\Models\CorrespondenceCourse;
+use App\Models\Coupon;
+use App\Models\Course;
+use App\Models\Customer;
+use App\Models\Description;
+use App\Models\Event;
+use App\Models\OnlineCourse;
+use App\Models\Registration;
+use App\Models\Student;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

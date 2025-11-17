@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Registrant extends Model
 
     public function registration()
     {
-        return $this->belongsTo(\App\Registration::class);
+        return $this->belongsTo(\App\Models\Registration::class);
     }
 
     public function myticket()
     {
-        return $this->hasOne(\App\Ticket::class, 'ticket_id', 'id');
+        return $this->hasOne(\App\Models\Ticket::class, 'ticket_id', 'id');
     }
 }

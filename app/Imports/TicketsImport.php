@@ -2,8 +2,8 @@
 
 namespace App\Imports;
 
-use App\Event;
-use App\Ticket;
+use App\Models\Event;
+use App\Models\Ticket;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 

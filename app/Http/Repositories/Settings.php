@@ -6,7 +6,7 @@
 
 namespace App\Http\Repositories;
 
-use App\Setting;
+use App\Models\Setting;
 
 class Settings
 {

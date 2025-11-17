@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Registration;
-use App\SupportTicket;
-use App\SupportTicketFile;
-use App\SupportTicketNote;
+use App\Models\Registration;
+use App\Models\SupportTicket;
+use App\Models\SupportTicketFile;
+use App\Models\SupportTicketNote;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller

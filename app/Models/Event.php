@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,6 @@ class Event extends Model
 
     public function tickets()
     {
-        return $this->hasMany(\App\Ticket::class);
+        return $this->hasMany(\App\Models\Ticket::class);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
-use App\Payment;
-use App\Student;
+use App\Models\Payment;
+use App\Models\Student;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

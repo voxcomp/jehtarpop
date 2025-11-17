@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Customer;
+use App\Models\Customer;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsFailures;

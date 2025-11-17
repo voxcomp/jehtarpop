@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Event;
+use App\Models\Event;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithStartRow;

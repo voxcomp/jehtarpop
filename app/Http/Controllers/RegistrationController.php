@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\CorrespondenceCourse;
-use App\Course;
-use App\Customer;
-use App\Event;
+use App\Models\CorrespondenceCourse;
+use App\Models\Course;
+use App\Models\Customer;
+use App\Models\Event;
 use App\Http\Repositories\hostedPaymentRepository;
-use App\OnlineCourse;
-use App\Registrant;
-use App\Registration;
-use App\Student;
-use App\Ticket;
+use App\Models\OnlineCourse;
+use App\Models\Registrant;
+use App\Models\Registration;
+use App\Models\Student;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller

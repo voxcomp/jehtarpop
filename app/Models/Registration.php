@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,12 +12,12 @@ class Registration extends Model
 
     public function registrants()
     {
-        return $this->hasMany(\App\Registrant::class, 'registration_id', 'id');
+        return $this->hasMany(\App\Models\Registrant::class, 'registration_id', 'id');
     }
 
     public function payment()
     {
-        return $this->hasMany(\App\Payment::class);
+        return $this->hasMany(\App\Models\Payment::class);
     }
 
     public function isTrade()

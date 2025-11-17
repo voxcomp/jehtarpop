@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Notifications\SupportTicketNoteChange;
-use App\SupportTicketNote;
+use App\Models\SupportTicketNote;
 
 class SupportTicketNoteObserver
 {

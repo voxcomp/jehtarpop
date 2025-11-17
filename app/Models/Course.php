@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +17,6 @@ class Course extends Model
 
     public function description()
     {
-        return $this->hasOne(\App\Description::class, 'courseid', 'courseid');
+        return $this->hasOne(\App\Models\Description::class, 'courseid', 'courseid');
     }
 }

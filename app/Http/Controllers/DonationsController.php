@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Donation;
+use App\Models\Donation;
 use App\Http\Repositories\hostedPaymentRepository;
-use App\Sponsoritem;
+use App\Models\Sponsoritem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 

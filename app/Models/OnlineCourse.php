@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CorrespondenceCourse extends Model
+class OnlineCourse extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,6 +12,6 @@ class CorrespondenceCourse extends Model
      * @var array
      */
     protected $fillable = [
-        'schoolyear', 'location', 'trade', 'courseid', 'member', 'nonmember', 'coursedesc', 'tradedesc',
+        'schoolyear', 'courseid', 'coursedesc', 'member', 'nonmember',
     ];
 }

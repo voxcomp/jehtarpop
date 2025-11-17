@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\CorrespondenceCourse;
-use App\Coupon;
-use App\Course;
-use App\Customer;
-use App\Description;
-use App\Donation;
-use App\Event;
+use App\Models\CorrespondenceCourse;
+use App\Models\Coupon;
+use App\Models\Course;
+use App\Models\Customer;
+use App\Models\Description;
+use App\Models\Donation;
+use App\Models\Event;
 use App\Exports\CorrespondenceRegistrationsExport;
 use App\Exports\DonationsExport;
 use App\Exports\EventRegistrationsExport;
@@ -21,11 +21,11 @@ use App\Imports\EventsImport;
 use App\Imports\OnlineImport;
 use App\Imports\StudentsImport;
 use App\Imports\TicketsImport;
-use App\OnlineCourse;
-use App\Registration;
-use App\Sponsoritem;
-use App\Student;
-use App\Ticket;
+use App\Models\OnlineCourse;
+use App\Models\Registration;
+use App\Models\Sponsoritem;
+use App\Models\Student;
+use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

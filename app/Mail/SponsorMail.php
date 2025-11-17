@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
-use App\Donation;
-use App\Sponsoritem;
+use App\Models\Donation;
+use App\Models\Sponsoritem;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
