@@ -1,3 +1,7 @@
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
