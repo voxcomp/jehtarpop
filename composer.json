@@ -17,9 +17,9 @@
         "laravel/framework": "^10.48",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
-        "laravelcollective/html": "^6.4",
         "league/omnipay": "^3.2",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "spatie/laravel-html": "^3.11"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.4",
