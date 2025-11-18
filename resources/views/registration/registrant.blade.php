@@ -104,7 +104,6 @@
 
 @section('footer')
 <script>
-(function($) {
 	@if($path=='event' || $path=='training')
 		@if(!empty(old('event-name',(isset($registrant['event-name']))?$registrant['event-name']:'')))
 			$(".event-name").val({{old('event-name',(isset($registrant['event-name']))?$registrant['event-name']:'')}}).trigger('change');
@@ -120,6 +119,5 @@
  			document.getElementById('registrant_form').submit();
 		});
 	});
-})(jQuery);
 </script>
 @endsection

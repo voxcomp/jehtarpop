@@ -116,7 +116,7 @@ Make A Sponsorship Donation
 
 					<div class="mb-3">
 						<h3 class="mb-1"><strong>Brick Wall Sponsorship:</strong></h3>
-							<div class="ml-3">
+							<div class="ms-*">
 								@foreach($items->where('parent','Brick Wall Sponsorship') as $item)
 									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
@@ -124,7 +124,7 @@ Make A Sponsorship Donation
 					</div>
 					<div class="mb-3">
 						<h3 class="mb-1"><strong>Front Lobby Sponsorship:</strong><br><small>Donor Wall of Honor – "Educating our Future Construction Workforce"</small></h3>
-							<div class="ml-3">
+							<div class="ms-*">
 								@foreach($items->where('parent','Front Lobby Sponsorship') as $item)
 									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
@@ -132,7 +132,7 @@ Make A Sponsorship Donation
 					</div>
 					<div class="mb-3">
 						<h3 class="mb-1"><strong>Classroom Sponsorship:</strong></h3>
-							<div class="ml-3">
+							<div class="ms-*">
 								@foreach($items->where('parent','Classroom Sponsorship') as $item)
 									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
@@ -140,7 +140,7 @@ Make A Sponsorship Donation
 					</div>
 					<div class="mb-3">
 						<h3 class="mb-1"><strong>A/V Equipment Sponsorship:</strong></h3>
-							<div class="ml-3">
+							<div class="ms-*">
 								@foreach($items->where('parent','A/V Equipment Sponsorship') as $item)
 									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
@@ -148,7 +148,7 @@ Make A Sponsorship Donation
 					</div>
 					<div class="mb-3">
 						<h3 class="mb-1"><strong>Trophy Case Sponsorship:</strong></h3>
-							<div class="ml-3">
+							<div class="ms-*">
 								@foreach($items->where('parent','Trophy Case Sponsorship') as $item)
 									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach

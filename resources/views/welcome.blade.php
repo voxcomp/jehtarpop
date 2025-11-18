@@ -9,7 +9,7 @@ Program Registration
 		<div class="funnels">
 			<div class="row">
 				<div class="col-sm mb-3">
-					<p><a href="{{route('registration.company','correspondence')}}" class="btn btn-warning btn-block">Correspondence Courses</a></p>
+					<p><a href="{{route('registration.company','correspondence')}}" class="btn btn-warning d-block w-100">Correspondence Courses</a></p>
 					@if(!getSetting('correspondenceregistration','status'))
 					<div class="help-block mb-2">
 						Registration currently closed.
@@ -18,7 +18,7 @@ Program Registration
 					{!! getSetting('fp_correspondence','editor') !!}
 				</div>
 				<div class="col-sm mb-3">
-					<p><a href="{{route('registration.company','online')}}" class="btn btn-warning btn-block">Online Courses</a></p>
+					<p><a href="{{route('registration.company','online')}}" class="btn btn-warning d-block w-100">Online Courses</a></p>
 					@if(!getSetting('onlineregistration','status'))
 					<div class="help-block mb-2">
 						Registration currently closed.
@@ -29,7 +29,7 @@ Program Registration
 			</div>
 			<div class="row">
 				<div class="col-sm mb-3">
-					<p><a href="{{route('registration.company','trade')}}" class="btn btn-warning btn-block">Trade Courses</a></p>
+					<p><a href="{{route('registration.company','trade')}}" class="btn btn-warning d-block w-100">Trade Courses</a></p>
 					@if(!getSetting('traderegistration','status'))
 					<div class="help-block mb-2">
 						Registration currently closed.
@@ -39,7 +39,7 @@ Program Registration
 				</div>
 				<div class="col-sm mb-3">
 					<div class="mb-3">
-						<p><a href="{{route('registration.company','training')}}" class="btn btn-warning btn-block">Training Courses</a></p>
+						<p><a href="{{route('registration.company','training')}}" class="btn btn-warning d-block w-100">Training Courses</a></p>
 						@if(!getSetting('trainingregistration','status'))
 						<div class="help-block mb-2">
 							Registration currently closed.
@@ -49,7 +49,7 @@ Program Registration
 					</div>
 					@if($events)
 					<div>
-						<p><a href="{{route('registration.company','event')}}" class="btn btn-warning btn-block">Events</a></p>
+						<p><a href="{{route('registration.company','event')}}" class="btn btn-warning d-block w-100">Events</a></p>
 						@if(!getSetting('eventregistration','status'))
 						<div class="help-block mb-2">
 							Registration currently closed.

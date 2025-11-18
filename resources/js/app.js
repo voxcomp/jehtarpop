@@ -4,7 +4,19 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+ import $ from 'jquery';
+  window.$ = window.jQuery = $;
+
+import 'bootstrap';
+import 'jquery-ui-dist/jquery-ui.min.js';
+ 
+ // Legacy jQuery plugins
+ import './jquery.autocomplete.min.js';
+ import './jquery.form.min.js';
+ import './jquery.mask.min.js';
+ import './progress.js';
+
+
 
 (function($) {
 	window.getCourseLocations = function() {
@@ -204,30 +216,41 @@ require('./bootstrap');
             }
         });
 	}
-	window.getEventTickets = function() {
+window.getEventTickets = function() {
 		$.ajaxSetup({
-		    headers: {
-		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		    }
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
 		});
-        $.ajax({
-            url: '/ajax/event/tickets/'+$('.event-name').val(),
-            type: 'POST',
-            dataType: 'JSON',
-            success: function(data) {
-	            for( let tickets in data ){
-		            $('.event-ticket').empty();
-		            $('.event-ticket').append('<option value="0">Choose...</option>');
-		            $('#cost').val('0');
-		            for( let item in data[tickets] ){
-			            $('.event-ticket').append('<option value="'+item+'">'+data[tickets][item]+'</option>');
+		$.ajax({
+			url: '/ajax/event/tickets/' + $('.event-name').val(),
+			type: 'POST',
+			dataType: 'JSON',
+			success: function(data) {
+				for (let tickets in data) {
+					$('.event-ticket').empty();
+					$('.event-ticket').append('<option value="0">Choose...</option>');
+					$('#cost').val('0');
+					for (let item in data[tickets]) {
+						$('.event-ticket').append('<option value="' + item + '">' + data[tickets][item] + '</option>');
 					}
-					$('.event-ticket-container').fadeIn(200);
+					if ($('.event-ticket').children('option').length > 1) {
+						// Show container and make select required
+						$('.event-ticket-container').fadeIn(200);
+						$('.event-ticket').attr('required', 'required');
+					} else {
+						// Hide container and remove required
+						$('.event-ticket-container').fadeOut(200);
+						$('.event-ticket').removeAttr('required');
+					}
 				}
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-            }
-        });
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				// On error, also hide and remove required
+				$('.event-ticket-container').fadeOut(200);
+				$('.event-ticket').removeAttr('required');
+			}
+		});
 	}
 	window.getEventCost = function(path) {
 		$.ajaxSetup({
@@ -547,4 +570,4 @@ require('./bootstrap');
 		    $(".alert").slideUp(500);
 		});
     }
-})(jQuery);
+})(window.jQuery);

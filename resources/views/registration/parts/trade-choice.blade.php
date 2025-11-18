@@ -5,9 +5,9 @@
 		            @if(isset($errors) && $errors->count() > 0)
 		            	<p class="text-danger"><strong>Please re-select your course details</strong></p>
 		            @endif
-		            @if ($errors->has('cost'))
+		            @if ($errors->has('course-id'))
 		                <p><span class="help-block">
-		                    <strong>{{ $errors->first('cost') }}</strong>
+		                    <strong>Please select a Trade, Location, and Course.</strong>
 		                </span></p>
 		            @endif
 		            <div class="row form-group{{ $errors->has('cost') ? ' has-error' : '' }}">
@@ -21,13 +21,13 @@
 			            <div class="col-sm">
 				            <div class="course-location-container" style="display:none;">
 					            <label for="course-location">Select Location:</label>
-					            {!! Form::select('course-location',[],null,['class'=>'form-control course-location','onchange'=>'getCourseIDs()', 'required']) !!}
+					            {!! Form::select('course-location',[],null,['class'=>'form-control course-location','onchange'=>'getCourseIDs()']) !!}
 				            </div>
 			            </div>
 			            <div class="col-sm">
 				            <div class="course-id-container" style="display:none;">
 					            <label for="course-id">Select Course:</label>
-					            {!! Form::select('course-id',[],null,['class'=>'form-control course-id','onchange'=>'getCourseCost(); getCourseDescription();', 'required']) !!}
+					            {!! Form::select('course-id',[],null,['class'=>'form-control course-id','onchange'=>'getCourseCost(); getCourseDescription();']) !!}
 				            </div>
 			            </div>
 		            </div>

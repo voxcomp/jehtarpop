@@ -74,7 +74,7 @@
 					{!!Form::hidden('responsible',$responsible,['class'=>'responsible'])!!}
 					{!!Form::hidden('coupon','',['class'=>'coupon'])!!}
 					{!!Form::hidden('method','check')!!}
-					<p class="text-center"><a onclick="SubmitConfirmDialog('{{getPaymentAgree()}}','Payment Agreement',$('#checkPayment_form'))" class="btn btn-warning btn-lg btn-block"><strong><big><i class="fas fa-money-check-alt text-primary"></i></big> Pay with Check</strong></a></p>
+					<p class="text-center"><a onclick="SubmitConfirmDialog('{{getPaymentAgree()}}','Payment Agreement',$('#checkPayment_form'))" class="btn btn-warning btn-lg d-block w-100"><strong><big><i class="fas fa-money-check-alt text-primary"></i></big> Pay with Check</strong></a></p>
 					{!! Form::close() !!}
 				</div>
 				@if($registration['name']!='Self Students' && $path!='online')
@@ -85,7 +85,7 @@
 					{!!Form::hidden('responsible',$responsible,['class'=>'responsible'])!!}
 					{!!Form::hidden('coupon','',['class'=>'coupon'])!!}
 					{!!Form::hidden('method','invoice')!!}
-					<p class="text-center"><a onclick="SubmitConfirmDialog('{{getPaymentAgree()}}','Payment Agreement',$('#invoicePayment_form'))" class="btn btn-warning btn-lg btn-block"><strong><big><i class="fas fa-file-alt text-primary"></i></big> Pay by Invoice</strong></a></p>
+					<p class="text-center"><a onclick="SubmitConfirmDialog('{{getPaymentAgree()}}','Payment Agreement',$('#invoicePayment_form'))" class="btn btn-warning btn-lg d-block w-100"><strong><big><i class="fas fa-file-alt text-primary"></i></big> Pay by Invoice</strong></a></p>
 					{!! Form::close() !!}
 				</div>
 				@endif
@@ -292,19 +292,20 @@
 @section('footer')
 <script>
 	var couponTimer;
-	$(window).on("load",function() {
-			var couponElement = document.getElementById('coupon');
-			couponElement.addEventListener('keyup',function(event) {
-				clearTimeout(couponTimer);
-// 				if(couponElement.value.length) {
-					couponTimer = setTimeout(function() { checkCoupon(couponElement.value,'coupon','{{$path}}'); },450);
-/*
-				} else {
-					$("#coupon").parent().removeClass("has-error").find(".alert").remove();
-				}
-*/
-			});
+	$(window).on("load", function() {
+		var couponElement = document.getElementById('coupon');
+		if (!couponElement) return;  // Safety check
+
+		couponElement.addEventListener('keyup', function(event) {
+			clearTimeout(couponTimer);
+			if (couponElement.value.length) {
+				couponTimer = setTimeout(function() {
+					checkCoupon(couponElement.value, 'coupon', '{{$path}}');
+				}, 450);
+			} else {
+				$("#coupon").parent().removeClass("has-error").find(".alert").remove();
+			}
+		});
 	});
-</script>
-@endsection
+</script>@endsection
 

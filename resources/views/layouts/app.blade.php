@@ -10,13 +10,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+	{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />--}}
     <link href="{{ asset('css/app.css') }}?ver=1.0" rel="stylesheet">
     @yield('head')
 </head>
 <body>
     <div id="app">
-	    <div class="top-bar bg-primary py-2 px-5 text-right no-print">
+	    <div class="top-bar bg-primary py-2 px-5 text-end no-print">
 		    <a href="https://www.gwgci.org/">BACK TO WEBSITE</a>
 		    @if(Auth::check())
                 <a href="{{ route('home') }}">
@@ -71,7 +71,7 @@
 								<a class="nav-link" href="{{route('home')}}">Dashboard</a>
 							</li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Registrations</a>
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Registrations</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="{{route('admin.downloads')}}">Downloads</a>
 									<a class="dropdown-item" href="{{route('admin.viewRegistrations')}}">View</a>
@@ -87,7 +87,7 @@
 						        <a href="{{route('admin.coupons')}}" class="nav-link">Discount Codes</a>
 						    </li>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Site Settings</a>
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Site Settings</a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="{{route('settings.general')}}">General</a>
 									<a class="dropdown-item" href="{{route('settings.content')}}">Content</a>
@@ -120,7 +120,8 @@
 		        <div class="row">
 			        <div class="col">
 					    <div class="alert alert-danger nohide">
-					        {!! session()->get('errormessage') !!}
+					        {!! session()->get('errormessage') !!}<br>
+							Please see below for more information.
 					    </div>
 			        </div>
 		        </div>
@@ -190,7 +191,7 @@
 				        </div>
 				        <p style="font-size:120%">Promoting, Educating and Advancing the Construction Industry</p>
 			        </div>
-			        <div class="col-sm-5 text-right mobile-text-center no-print">
+			        <div class="col-sm-5 text-end mobile-text-center no-print">
 				        <div>CONNECT WITH US ON:</div>
 				        <p class="social">
 					        <a href="https://twitter.com/gwgci" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -205,7 +206,7 @@
 			        <div class="col-sm-7 no-print mobile-text-center">
 				        <div>The Massachusetts Chapter of Associated Builders and Contractors (ABCMA) is the largest construction trade association in the Commonwealth, representing over 480 local general contractor, subcontractor, supplier and associate companies. These companies employ more than 22,000 workers throughout Massachusetts.</div>
 			        </div>
-			        <div class="col-sm-5 text-right mobile-text-center print-left">
+			        <div class="col-sm-5 text-end mobile-text-center print-left">
 				        <div><strong>100 Unicorn Park Drive, Suite 2<br>Woburn, MA 01801<br>781-270-9990</strong></div>
 				        <div>&copy; {{date("Y")}} Gould Construction Institute. All Rights Reserved.</div>
 			        </div>
@@ -219,8 +220,9 @@
 	<div id="dialog-confirm"></div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}?ver=2.0" ></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>
-    <script src="{{ asset('js/theme.js') }}?ver=2.0" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     @yield('footer')
+	{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script>--}}
+	{{--<script src="{{ asset('js/theme.js') }}?ver=2.0" ></script>--}}
 </body>
 </html>

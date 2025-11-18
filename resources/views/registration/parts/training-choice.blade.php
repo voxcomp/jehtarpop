@@ -5,11 +5,13 @@
 		            @if(isset($errors) && $errors->count() > 0)
 		            	<p class="text-danger"><strong>Please select a class and ticket</strong></p>
 		            @endif
-		            @if ($errors->has('cost'))
+					{{--
+		            @if ($errors->has('event-ticket'))
 		                <p><span class="help-block">
-		                    <strong>{{ $errors->first('cost') }}</strong>
+		                    <strong>{{ $errors->first('event-ticket') }}</strong>
 		                </span></p>
 		            @endif
+					--}}
 		            <div class="row form-group{{ $errors->has('cost') ? ' has-error' : '' }}">
 			            <div class="col-sm">
 				            <label for="event-name">Select Class:</label>
@@ -18,7 +20,7 @@
 			            <div class="col-sm">
 				            <div class="event-ticket-container" style="display:none;">
 					            <label for="event-ticket">Select Ticket:</label>
-					            {!! Form::select('event-ticket',[],null,['class'=>'form-control event-ticket','onchange'=>"getEventCost('".$path."')", 'required']) !!}
+					            {!! Form::select('event-ticket',[],null,['class'=>'form-control event-ticket','onchange'=>"getEventCost('".$path."')"]) !!}
 				            </div>
 			            </div>
 		            </div>

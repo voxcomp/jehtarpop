@@ -209,7 +209,7 @@ class RegistrationController extends Controller
             'city' => 'required|string|max:200',
             'state' => 'required|string|max:50',
             'zip' => 'required|string|max:11',
-            'cost' => 'required|numeric',
+            /*'cost' => 'required|numeric',*/
         ];
         switch ($path) {
             case 'training':

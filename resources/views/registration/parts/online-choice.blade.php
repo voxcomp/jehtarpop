@@ -5,11 +5,13 @@
 		            @if(isset($errors) && $errors->count() > 0)
 		            	<p class="text-danger"><strong>Please re-select your course</strong></p>
 		            @endif
-		            @if ($errors->has('cost'))
+					{{--
+		            @if ($errors->has('course-id'))
 		                <p><span class="help-block">
-		                    <strong>{{ $errors->first('cost') }}</strong>
+		                    <strong>{{ $errors->first('course-id') }}</strong>
 		                </span></p>
 		            @endif
+					--}}
 		            <div class="row form-group{{ $errors->has('cost') ? ' has-error' : '' }}">
 			            <div class="col-sm">
 				            <div class="course-id-container">

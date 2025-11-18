@@ -5,9 +5,9 @@
 		            @if(isset($errors) && $errors->count() > 0)
 		            	<p class="text-danger"><strong>Please re-select your class details</strong></p>
 		            @endif
-		            @if ($errors->has('cost'))
+		            @if ($errors->has('course-id'))
 		                <p><span class="help-block">
-		                    <strong>{{ $errors->first('cost') }}</strong>
+		                    <strong>{{ $errors->first('course-id') }}</strong>
 		                </span></p>
 		            @endif
 		            <div class="row form-group{{ $errors->has('cost') ? ' has-error' : '' }}">
@@ -21,7 +21,7 @@
 			            <div class="col-sm">
 				            <div class="course-id-container" style="display:none;">
 					            <label for="course-id">Select Course:</label>
-					            {!! Form::select('course-id',[],null,['class'=>'form-control course-id','onchange'=>"getCourseCost('".$path."')", 'required']) !!}
+					            {!! Form::select('course-id',[],null,['class'=>'form-control course-id','onchange'=>"getCourseCost('".$path."')"]) !!}
 				            </div>
 			            </div>
 		            </div>

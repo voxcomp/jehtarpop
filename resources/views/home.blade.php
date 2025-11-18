@@ -38,7 +38,7 @@ Administration
 						Check Amount: ${{number_format($registrations->where('paytype','check')->filter(fn($s)=>$s->created_at>=now()->subDay())->sum('total'),2)}}<br>
 						<hr>
 						<strong>Registration Types</strong>
-						<div class="pl-2">
+						<div class="ps-*">
 							@foreach($registrations->where('paytype','<>','hold')->filter(fn($s)=>$s->created_at>=now()->subDay())->groupBy('regtype')->map(fn ($items) => $items->count()) as $regtype => $total)
 								{{ucfirst($regtype)}}: {{$total}}<br>
 							@endforeach
@@ -61,7 +61,7 @@ Administration
 						Check Amount: ${{number_format($registrations->where('paytype','check')->filter(fn($s)=>$s->created_at>=now()->subDays(30))->sum('total'),2)}}
 						<hr>
 						<strong>Registration Types</strong>
-						<div class="pl-2">
+						<div class="ps-*">
 							@foreach($registrations->where('paytype','<>','hold')->filter(fn($s)=>$s->created_at>=now()->subDays(30))->groupBy('regtype')->map(fn ($items) => $items->count()) as $regtype => $total)
 								{{ucfirst($regtype)}}: {{$total}}<br>
 							@endforeach
@@ -84,7 +84,7 @@ Administration
 						Check Amount: ${{number_format($registrations->where('paytype','check')->filter(fn($s)=>$s->created_at>=now()->subDays(90))->sum('total'),2)}}
 						<hr>
 						<strong>Registration Types</strong>
-						<div class="pl-2">
+						<div class="ps-*">
 							@foreach($registrations->where('paytype','<>','hold')->filter(fn($s)=>$s->created_at>=now()->subDays(90))->groupBy('regtype')->map(fn ($items) => $items->count()) as $regtype => $total)
 								{{ucfirst($regtype)}}: {{$total}}<br>
 							@endforeach

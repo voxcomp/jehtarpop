@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+//const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,8 +11,26 @@ const mix = require('laravel-mix');
  |
  */
 
+//mix.js('resources/js/app.js', 'public/js')
+//    .sass('resources/sass/app.scss', 'public/css')
+//    .scripts(['resources/js/jquery.form.min.js', 'resources/js/jquery.mask.min.js'],'public/js/theme.js')
+//    .copy('resources/js/progress.js','public/js/progress.js')
+//    .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
+
+const mix = require('laravel-mix');
+const webpack = require('webpack');
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        })
+    ]
+});
+
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .scripts(['resources/js/jquery.form.min.js', 'resources/js/jquery.mask.min.js'],'public/js/theme.js')
-    .copy('resources/js/progress.js','public/js/progress.js')
-    .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
+.sass('resources/sass/app.scss', 'public/css')
+.sourceMaps()
+.version();

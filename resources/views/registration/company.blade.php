@@ -183,29 +183,32 @@
 
 @section('footer')
 <!-- Modal -->
-<div class="modal fade" id="companyModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="companyModal"
+	 data-bs-backdrop="static"
+	 data-bs-keyboard="false"
+	 tabindex="-1"
+	 aria-labelledby="companyModalLabel"
+	 aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Choose Your Company</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-	      <p>Please let us know if this is your company to take advantage of member pricing:</p>
-	      <div id="modalCompany"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="useNew()">Use This Information</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="keepOld()">Decline</button>
-      </div>
-    </div>
+	<div class="modal-content">
+	  <div class="modal-header">
+		<h5 class="modal-title" id="companyModalLabel">Choose Your Company</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	  </div>
+	  <div class="modal-body">
+		<p>Please let us know if this is your company to take advantage of member pricing:</p>
+		<div id="modalCompany"></div>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-primary" onclick="useNew()">Use This Information</button>
+		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="keepOld()">Decline</button>
+	  </div>
+	</div>
   </div>
 </div>
 
 <script>
-(function($) {
+	var myModal;
 	window.companyobj = 0;
 	
 	window.matchCompanyInformation = function(coname,coaddress,cocity,cozip,cophone) {
@@ -224,18 +227,20 @@
 	            zip:cozip,
 	            phone:cophone
             },
-            dataType: 'HTML',
+            dataType: 'JSON',
             success: function(data) {
-	            data = JSON.parse(data);
-	            if(jQuery.isEmptyObject(data)) {
-		            document.getElementById('company_form').submit()
-	            } else {
+	            //data = JSON.parse(data);
+	            //if(window.jQuery.isEmptyObject(data)) {
+		          //  document.getElementById('company_form').submit()
+	            //} else {
 		            companyobj = data;
 		            $("#modalCompany").html(data.name+'<br>'+data.address+'<br>'+data.city+', '+data.state+' '+data.zip+"<br>"+data.phone);
-					$("#companyModal").modal({
-						keyboard:false
-					});
-				}
+					myModal = new bootstrap.Modal(document.getElementById('companyModal'));
+					myModal.show();
+						// $("#companyModal").modal({
+						// keyboard:false
+					//});
+				//}
             },
             error: function(jqXHR, textStatus, errorThrown) {
             }
@@ -251,7 +256,7 @@
         $("#city").val(companyobj.city);
         $("#state").val(companyobj.state);
         $("#zip").val(companyobj.zip);
-		$("#companyModal").modal("hide");
+		myModal.hide();
         document.getElementById('company_form').submit()
 	}
 	
@@ -267,6 +272,5 @@
 			}
 		});
 	});
-})(jQuery);
 </script>
 @endsection

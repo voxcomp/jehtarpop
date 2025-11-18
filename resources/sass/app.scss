@@ -13,7 +13,7 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 body {
 	color:#272727;
@@ -26,6 +26,9 @@ body {
 	overflow-x: hidden;
 }
 
+.form-group {
+	margin-bottom:15px;
+}
 .front-container {
 	position: relative;
 	display:flex;
