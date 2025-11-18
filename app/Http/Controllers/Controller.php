@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Settings;
 use App\Models\Customer;
 use App\Models\Student;
-use Illuminate\Routing\Controller as BaseController;
 
-class Controller extends BaseController
+class Controller
 {
 
     protected $settings;
