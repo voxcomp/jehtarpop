@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Models\Registration;
 use App\Models\SupportTicket;
 use App\Models\SupportTicketFile;
 use App\Models\SupportTicketNote;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SupportController extends Controller
 {

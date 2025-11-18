@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Events\RegistrationProcessed;
 use App\Http\Repositories\hostedPaymentRepository;
 use App\Http\Requests\CardVerificationRequest;
@@ -14,6 +13,7 @@ use App\Models\Student;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\View\View;
 use Omnipay\Omnipay;
 
 class PaymentController extends Controller

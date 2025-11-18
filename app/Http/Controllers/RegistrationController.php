@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Http\Repositories\hostedPaymentRepository;
 use App\Models\CorrespondenceCourse;
 use App\Models\Course;
@@ -14,6 +13,7 @@ use App\Models\Registration;
 use App\Models\Student;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RegistrationController extends Controller
 {

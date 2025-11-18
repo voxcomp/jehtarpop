@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Models\CorrespondenceCourse;
 use App\Models\Coupon;
 use App\Models\Course;
@@ -14,6 +13,7 @@ use App\Models\Registration;
 use App\Models\Student;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -272,7 +272,7 @@ class HomeController extends Controller
     /**
      * Check coupon code.  Prints true if usable.
      */
-    public function coupon(string $coupon = null, $path = 'event')
+    public function coupon(?string $coupon = null, $path = 'event')
     {
         $cost = 0;
         if (! session()->has($path.'registration')) {
