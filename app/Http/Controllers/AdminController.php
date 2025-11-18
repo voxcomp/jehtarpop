@@ -46,8 +46,6 @@ class AdminController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(): View
     {
@@ -546,8 +544,6 @@ class AdminController extends Controller
 
     /**
      * Show coupon page.  If coupon code id sent, populate form fields
-     *
-     * @return \Illuminate\Http\Response
      */
     public function coupons(Coupon $coupon): View
     {
@@ -564,7 +560,6 @@ class AdminController extends Controller
     /**
      * Save new coupon from form.
      *
-     * @param  App\Http\Requests  $request
      * @return \Illuminate\Http\Response
      */
     public function couponCreate(Request $request)
@@ -596,9 +591,6 @@ class AdminController extends Controller
 
     /**
      * Save updated coupon from form.
-     *
-     * @param  App\Http\Requests  $request
-     * @return \Illuminate\Http\Response
      */
     public function couponSave(Request $request): RedirectResponse
     {

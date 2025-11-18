@@ -15,9 +15,6 @@ class StudentsImport implements SkipsOnFailure, ToModel, WithStartRow
 {
     use Importable, SkipsFailures;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
     public function model(array $row): ?Model
     {
         // Company types of *, * are members

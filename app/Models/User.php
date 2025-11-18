@@ -38,8 +38,6 @@ class User extends Authenticatable
 
     /**
      * Tests usertype field, returns true if user is admin
-     *
-     * @return bool
      */
     public function isAdmin(): bool
     {

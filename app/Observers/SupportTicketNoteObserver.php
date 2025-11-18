@@ -9,8 +9,6 @@ class SupportTicketNoteObserver
 {
     /**
      * Handle the support ticket note "created" event.
-     *
-     * @return void
      */
     public function created(SupportTicketNote $supportTicketNote): void
     {
@@ -20,8 +18,6 @@ class SupportTicketNoteObserver
 
     /**
      * Handle the support ticket note "updated" event.
-     *
-     * @return void
      */
     public function updated(SupportTicketNote $supportTicketNote): void
     {
@@ -30,8 +26,6 @@ class SupportTicketNoteObserver
 
     /**
      * Handle the support ticket note "deleted" event.
-     *
-     * @return void
      */
     public function deleted(SupportTicketNote $supportTicketNote): void
     {
@@ -40,8 +34,6 @@ class SupportTicketNoteObserver
 
     /**
      * Handle the support ticket note "restored" event.
-     *
-     * @return void
      */
     public function restored(SupportTicketNote $supportTicketNote): void
     {
@@ -50,8 +42,6 @@ class SupportTicketNoteObserver
 
     /**
      * Handle the support ticket note "force deleted" event.
-     *
-     * @return void
      */
     public function forceDeleted(SupportTicketNote $supportTicketNote): void
     {

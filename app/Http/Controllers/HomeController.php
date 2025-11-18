@@ -30,8 +30,6 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(): View
     {
@@ -273,8 +271,6 @@ class HomeController extends Controller
 
     /**
      * Check coupon code.  Prints true if usable.
-     *
-     * @param  string  $coupon
      */
     public function coupon(string $coupon = null, $path = 'event')
     {

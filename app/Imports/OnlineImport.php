@@ -13,9 +13,6 @@ class OnlineImport implements ToModel, WithMultipleSheets, WithStartRow
 {
     use Importable;
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
     public function model(array $row): ?Model
     {
         return new OnlineCourse([

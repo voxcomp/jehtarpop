@@ -18,7 +18,6 @@ class Settings
      * Get setting from DB.  Return setting value.
      *
      * @param  $s_name  string
-     * @return string
      */
     public static function get($s_name, $group = 'general', $default = null): string
     {
@@ -34,7 +33,6 @@ class Settings
      * Get setting type from DB..
      *
      * @param  $s_name  string
-     * @return string
      */
     public function gettype($s_name): string
     {
@@ -51,7 +49,6 @@ class Settings
      * Get setting encryption from DB..
      *
      * @param  $s_name  string
-     * @return string
      */
     public function getencrypt($s_name): string
     {
@@ -69,7 +66,6 @@ class Settings
      *
      * @param  $s_name  string
      * @param  $s_value  string
-     * @return bool
      */
     public static function set($display, $name, $value, $group = 'general', $s_css_selector = '', $s_css_property = '', $type = 'alpha_dash', $encrypt = false): bool
     {
@@ -129,7 +125,6 @@ class Settings
      * Delete setting from DB.  Return false if not found.
      *
      * @param  $s_name  string
-     * @return bool
      */
     public function delete($s_name, $s_group = 'general'): bool
     {
@@ -138,8 +133,6 @@ class Settings
 
     /**
      * Return a Collection of all settings.
-     *
-     * @return Collection
      */
     public function all(): Collection
     {
@@ -148,8 +141,6 @@ class Settings
 
     /**
      * Return a Collection of grouped settings.
-     *
-     * @return Collection
      */
     public function getGroup($s_group = 'general'): Collection
     {

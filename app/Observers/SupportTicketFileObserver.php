@@ -9,8 +9,6 @@ class SupportTicketFileObserver
 {
     /**
      * Handle the support ticket file "created" event.
-     *
-     * @return void
      */
     public function created(SupportTicketFile $supportTicketFile): void
     {
@@ -20,8 +18,6 @@ class SupportTicketFileObserver
 
     /**
      * Handle the support ticket file "updated" event.
-     *
-     * @return void
      */
     public function updated(SupportTicketFile $supportTicketFile): void
     {
@@ -30,8 +26,6 @@ class SupportTicketFileObserver
 
     /**
      * Handle the support ticket file "deleted" event.
-     *
-     * @return void
      */
     public function deleted(SupportTicketFile $supportTicketFile): void
     {
@@ -40,8 +34,6 @@ class SupportTicketFileObserver
 
     /**
      * Handle the support ticket file "restored" event.
-     *
-     * @return void
      */
     public function restored(SupportTicketFile $supportTicketFile): void
     {
@@ -50,8 +42,6 @@ class SupportTicketFileObserver
 
     /**
      * Handle the support ticket file "force deleted" event.
-     *
-     * @return void
      */
     public function forceDeleted(SupportTicketFile $supportTicketFile): void
     {
