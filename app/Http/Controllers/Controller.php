@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Settings;
 use App\Models\Customer;
 use App\Models\Student;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests;
 
     protected $settings;
 
