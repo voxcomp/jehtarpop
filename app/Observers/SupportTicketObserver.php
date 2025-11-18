@@ -12,7 +12,7 @@ class SupportTicketObserver
      *
      * @return void
      */
-    public function created(SupportTicket $supportTicket)
+    public function created(SupportTicket $supportTicket): void
     {
         $supportTicket->refresh();
         $supportTicket->notify(new SupportTicketChange($supportTicket));
@@ -23,7 +23,7 @@ class SupportTicketObserver
      *
      * @return void
      */
-    public function updated(SupportTicket $supportTicket)
+    public function updated(SupportTicket $supportTicket): void
     {
         $supportTicket->refresh();
         $supportTicket->notify(new SupportTicketChange($supportTicket));
@@ -34,7 +34,7 @@ class SupportTicketObserver
      *
      * @return void
      */
-    public function deleted(SupportTicket $supportTicket)
+    public function deleted(SupportTicket $supportTicket): void
     {
         //
     }
@@ -44,7 +44,7 @@ class SupportTicketObserver
      *
      * @return void
      */
-    public function restored(SupportTicket $supportTicket)
+    public function restored(SupportTicket $supportTicket): void
     {
         //
     }
@@ -54,7 +54,7 @@ class SupportTicketObserver
      *
      * @return void
      */
-    public function forceDeleted(SupportTicket $supportTicket)
+    public function forceDeleted(SupportTicket $supportTicket): void
     {
         //
     }

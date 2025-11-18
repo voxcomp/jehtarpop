@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class Description extends Model
@@ -10,7 +11,7 @@ class Description extends Model
         'courseid', 'description',
     ];
 
-    public function course()
+    public function course(): BelongsTo
     {
         return $this->belongsTo(\App\Models\Course::class);
     }

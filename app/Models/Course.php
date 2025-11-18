@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
@@ -15,7 +16,7 @@ class Course extends Model
         'schoolyear', 'location', 'trade', 'courseid', 'member', 'nonmember', 'coursedesc', 'tradedesc',
     ];
 
-    public function description()
+    public function description(): HasOne
     {
         return $this->hasOne(\App\Models\Description::class, 'courseid', 'courseid');
     }

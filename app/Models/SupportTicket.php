@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,17 +47,17 @@ class SupportTicket extends Model
         }
     }
 
-    public function record()
+    public function record(): BelongsTo
     {
         return $this->belongsTo(Registration::class);
     }
 
-    public function notes()
+    public function notes(): HasMany
     {
         return $this->hasMany(SupportTicketNote::class, 'support_ticket_id', 'id');
     }
 
-    public function files()
+    public function files(): HasMany
     {
         return $this->hasMany(SupportTicketFile::class, 'support_ticket_id', 'id');
     }

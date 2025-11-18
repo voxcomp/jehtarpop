@@ -21,7 +21,7 @@ class SendRegistrationNotification
      *
      * @return void
      */
-    public function handle(RegistrationProcessed $event)
+    public function handle(RegistrationProcessed $event): void
     {
         foreach (explode(',', getSetting('ADMIN_EMAIL', 'general')) as $email) {
             \Mail::to(trim($email))->send(new \App\Mail\RegistrationMail($event->path, $event->registration, '', false));

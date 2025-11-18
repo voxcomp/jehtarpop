@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('registrations', function (Blueprint $table) {
             $table->string('regtype', 10)->default('trade');
@@ -23,7 +23,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('registrations', function (Blueprint $table) {
             $table->dropColumn('regtype');

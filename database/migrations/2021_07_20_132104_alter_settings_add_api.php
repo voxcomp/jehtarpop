@@ -9,7 +9,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         \DB::table('settings')->insert([['name' => 'api_login', 'value' => ''], ['name' => 'transaction_key', 'value' => '']]);
     }
@@ -19,7 +19,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         \DB::table('settings')->where('name', 'api_login')->delete();
         \DB::table('settings')->where('name', 'transaction_key')->delete();

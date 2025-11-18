@@ -13,7 +13,7 @@ class CardVerificationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +23,7 @@ class CardVerificationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'card_number' => ['required', new CardNumber],
@@ -35,7 +35,7 @@ class CardVerificationRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'amount.min' => 'The amount must be a minimum of 1.00',

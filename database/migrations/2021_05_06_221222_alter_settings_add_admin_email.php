@@ -9,7 +9,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         \DB::table('settings')->insert([['name' => 'ADMIN_EMAIL', 'value' => 'crystal@gwgci.org'], ['name' => 'ADMIN_EMAIL2', 'value' => 'jeff@gwgci.org']]);
     }
@@ -19,7 +19,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         \DB::table('settings')->where('name', 'like', 'ADMIN_EMAIL%')->delete();
     }

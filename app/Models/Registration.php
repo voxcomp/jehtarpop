@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
@@ -10,12 +11,12 @@ class Registration extends Model
         'coid', 'name', 'phone', 'address', 'city', 'state', 'zip', 'contact', 'cphone', 'cemail', 'registrantcount', 'paytype', 'paid', 'balance', 'member', 'ponum', 'regtype', 'contactfname', 'contactlname', 'responsible', 'coupon', 'discount', 'payagree', 'clientip',
     ];
 
-    public function registrants()
+    public function registrants(): HasMany
     {
         return $this->hasMany(\App\Models\Registrant::class, 'registration_id', 'id');
     }
 
-    public function payment()
+    public function payment(): HasMany
     {
         return $this->hasMany(\App\Models\Payment::class);
     }
