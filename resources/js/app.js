@@ -8,7 +8,10 @@
   window.$ = window.jQuery = $;
 
 import 'bootstrap';
-import 'jquery-ui-dist/jquery-ui.min.js';
+import Dropdown from 'bootstrap/js/dist/dropdown';
+
+import 'jquery-ui-dist/jquery-ui.js';
+import 'jquery-ui-dist/jquery-ui.css';
  
  // Legacy jQuery plugins
  import './jquery.autocomplete.min.js';
@@ -409,7 +412,7 @@ window.getEventTickets = function() {
             type: 'POST',
             dataType: 'JSON',
             success: function(data) {
-// 	            console.log(data);
+ 	            console.log(data);
                 if(!data.status) {
 	                $("#"+el).parent().find(".alert").remove();
 	                if(coupon!='xxxxx') {
@@ -563,7 +566,18 @@ window.getEventTickets = function() {
 		if($('input.money').length) {
 			$("input.money").mask("000000.00",{reverse: true});
 		}
-		
+		$('.nav-item.dropdown').hover(
+			function() {
+			  let dropdownToggle = $(this).find('.dropdown-toggle')[0];
+			  let dropdown = Dropdown.getOrCreateInstance(dropdownToggle);
+			  dropdown.show();
+			},
+			function() {
+			  let dropdownToggle = $(this).find('.dropdown-toggle')[0];
+			  let dropdown = Dropdown.getOrCreateInstance(dropdownToggle);
+			  dropdown.hide();
+			}
+		  );		
 	});
     if($(".alert").length) {
 		$(".alert").not(".nohide").fadeTo(30000, 500).slideUp(500, function(){

@@ -189,7 +189,7 @@ class SupportController extends Controller
 
     public function download(SupportTicketFile $file)
     {
-        $path = storage_path('app/support/'.$file->filename);
+        $path = storage_path('app/private/support/'.$file->filename);
         if (! file_exists($path)) {
             return redirect()->back()->with('message', 'The file was not found');
         }
@@ -200,7 +200,7 @@ class SupportController extends Controller
     public function upload(SupportTicket $ticket, Request $request)
     {
         $request->validate([
-            'document' => 'required|file|mimes:pdf,png,docx,doc,xls,xlsx,ppt,pptx,odt,ods,odp,rtf,jpg,jpeg,gif|max:4048', // adjust as needed
+            'document' => 'required|file|mimes:pdf,png,docx,doc,xls,xlsx,ppt,pptx,odt,ods,odp,rtf,jpg,jpeg,gif,txt|max:4048', // adjust as needed
         ]);
         if ($request->hasFile('document')) {
             $file = $request->file('document');

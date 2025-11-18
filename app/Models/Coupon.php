@@ -50,7 +50,7 @@ class Coupon extends Model
     /**
      * Returns cost after coupon value is taken
      */
-    public function value(float $charge): bool
+    public function value(float $charge)
     {
         if ($this->discount_type == 'dollar') {
             $charge = floatval($this->amount);

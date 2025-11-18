@@ -25,7 +25,7 @@ class DonationsController extends Controller
     public function submitDonation(Request $request): RedirectResponse
     {
         if (! (isset($request->inkind) && $request->inkind == '101')) {
-            $isDonationExist = Donation::where('sponsor', 0)->where('clientip', \Request::ip())->where('created_at', '>', Carbon::now()->subMinutes(2)->toDateTimeString())->first();
+            $isDonationExist = Donation::where('sponsor', 0)->where('clientip', $request->ip())->where('created_at', '>', now()->subMinutes(2)->toDateTimeString())->first();
         } else {
             $isDonationExist = null;
         }
@@ -54,7 +54,7 @@ class DonationsController extends Controller
                 'state' => $request->input('state'),
                 'zip' => $request->input('zip'),
                 'amount' => $request->input('amount'),
-                'clientip' => \Request::ip(),
+                'clientip' => $request->ip(),
             ]);
             if ($donation) {
                 if (isset($request->inkind) && $request->inkind == '101') {
@@ -126,7 +126,7 @@ class DonationsController extends Controller
     public function submitSponsor(Request $request): RedirectResponse
     {
         if (! (isset($request->inkind) && $request->inkind == '101')) {
-            $isDonationExist = Donation::where('sponsor', 1)->where('clientip', \Request::ip())->where('created_at', '>', Carbon::now()->subMinutes(2)->toDateTimeString())->first();
+            $isDonationExist = Donation::where('sponsor', 1)->where('clientip', $request->ip())->where('created_at', '>', now()->subMinutes(2)->toDateTimeString())->first();
         } else {
             $isDonationExist = null;
         }
@@ -167,7 +167,7 @@ class DonationsController extends Controller
                     'amount' => $sponsoritem->price,
                     'options' => $sponsoritem->name,
                     'sponsor' => 1,
-                    'clientip' => \Request::ip(),
+                    'clientip' => $request->ip(),
                     'paytype' => 'hold',
                 ]);
                 if (isset($image)) {

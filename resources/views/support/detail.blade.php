@@ -9,7 +9,7 @@ Administration - Support Ticket Detail
 	<div class="col">
 		<h3><a href="{{route('support.list')}}"><i class="fas fa-chevron-circle-left"></i> View All Support Tickets</a></h3>
 	</div>
-	<div class="col text-right">
+	<div class="col text-end">
 		{{ html()->form('POST', route('support.delete', $ticket->id))->id('delete_ticket')->open() }}
 		{{ html()->form()->close() }}
 		<a href="#" class="btn btn-danger" onclick="SubmitConfirmDialog('Delete this support ticket permanently?','Delete Ticket',$('#delete_ticket'))">Delete Ticket</a>
@@ -30,17 +30,17 @@ Administration - Support Ticket Detail
 					@if(!empty($ticket->contactname))
 						<div class="mb-3 p-3 bg-light">
 							<h3>Registration Contact:</h3>
-							<p><strong>Name:</strong> {{$ticket->contactname}}<br>
-							<strong>Phone:</strong> {{$ticket->contactphone}}<br>
-							<strong>Email:</strong> <a href="mailto:{{$ticket->contactemail}}">{{$ticket->contactemail}}</a></p>
+							<div><strong>Name:</strong> {{$ticket->contactname}}</div>
+							<div><strong>Phone:</strong> {{$ticket->contactphone}}</div>
+							<div><strong>Email:</strong> <a href="mailto:{{$ticket->contactemail}}">{{$ticket->contactemail}}</a></div>
 						</div>
 					@endif
 					<div class="mb-3 p-3">
 						<h3>Issue Contact Emails:</h3>
 						{{ html()->form('POST', route('support.email.save', $ticket->id))->open() }}
-							{{ html()->label('Email Addresses:', 'email')->class('form-label') }}
-							{{ html()->text('email', old('email', $ticket->email))->class('form-control')->required() }}<br>
-							{{ html()->input('submit')->value('Save')->class('btn btn-warning') }}
+							<div class="mb-2">{{ html()->label('Email Addresses:', 'email')->class('form-label') }}
+							{{ html()->text('email', old('email', $ticket->email))->class('form-control')->required() }}</div>
+							<div>{{ html()->input('submit')->value('Save')->class('btn btn-warning') }}</div>
 						{{ html()->form()->close() }}
 					</div>
 					@if(!empty($ticket->registration))
@@ -57,7 +57,7 @@ Administration - Support Ticket Detail
 								<h4>Registrants:</h4>
 								<?php $cost = 0; ?>
 								@foreach($register['registrants'] as $key=>$registrant)
-								<p style="line-height:1em;">{{$registrant['firstname']}} {{$registrant['lastname']}}<br><small>{{$registrant['class']}}<br>Cost: ${{$registrant['cost']}}</small></p>
+								<div style="line-height:1em;">{{$registrant['firstname']}} {{$registrant['lastname']}}<br><small>{{$registrant['class']}}<br>Cost: ${{$registrant['cost']}}</small></div>>
 								<?php $cost += $registrant['cost']; ?>
 								@endforeach
 								<p>&nbsp;</p>
@@ -73,7 +73,9 @@ Administration - Support Ticket Detail
 							<div class="card-body">
 								@if($ticket->record->name!='Self Students')
 								<h4>Company:</h4>
-								<p><strong>{{$ticket->record->name}}</strong><br>{{$ticket->record->address}}<br>{{$ticket->record->city}}, {{$ticket->record->state}} {{$ticket->record->zip}}</p>
+								<div><strong>{{$ticket->record->name}}</strong></div>
+								<div>{{$ticket->record->address}}</div>
+								<div class="mb-1">{{$ticket->record->city}}, {{$ticket->record->state}} {{$ticket->record->zip}}</div>
 								<p>{{$ticket->record->phone}}</p>
 								<p>&nbsp;</p>
 								<h4>Party Responsible for Payment:</h4>
@@ -82,26 +84,25 @@ Administration - Support Ticket Detail
 								<?php $payment = $ticket->record->payment()->where('payment_status','hold')->first(); ?>
 								@if(!empty($payment))
 									<h4>Billing:</h4>
-									<p>
 										@if(isset($payment->fname))
-											<strong>{{$payment->fname}} {{$payment->lname}}</strong><br>
+											<div><strong>{{$payment->fname}} {{$payment->lname}}</strong></div>
 										@else
-											<strong>{{$payment->firstname}} {{$payment->lastname}}</strong><br>
+											<div><strong>{{$payment->firstname}} {{$payment->lastname}}</strong></div>
 										@endif
-										{{$payment->address}}<br>{{$payment->city}}, {{$payment->state}} {{$payment->zip}}</p>
+										<div>{{$payment->address}}<br>{{$payment->city}}, {{$payment->state}} {{$payment->zip}}</div>
 									<p>&nbsp;</p>
 								@endif
 								@if($ticket->record->name!='Self Students')
 								<h4>Registrants:</h4>
 								@endif
 								@foreach($ticket->record->registrants as $registrant)
-								<p style="line-height:1em;">{{$registrant->firstname}} {{$registrant->lastname}}<br>
+								<div style="line-height:1em;">{{$registrant->firstname}} {{$registrant->lastname}}</div>
 								@if(empty($registrant->course))
-									<small>{{$registrant->event}}  ({{$registrant->ticket}})<br>
+									<div><small>{{$registrant->event}}  ({{$registrant->ticket}})</small>
 								@else
-									<small>{{$registrant->course}}<br>
+									<div><small>{{$registrant->course}}</small></div>
 								@endif
-								Cost: ${{$registrant->fee}}</small></p>
+								<div><small>Cost: ${{$registrant->fee}}</small></div>
 								@endforeach
 								<p>&nbsp;</p>
 								<h5 class="text-dark">SubTotal: <strong>$<span class="subtotal">{{number_format($ticket->record->total,2)}}</span></strong></h5>
@@ -128,6 +129,7 @@ Administration - Support Ticket Detail
 								<div class="row align-items-center">
 									<div class="col-sm-1">
 										{{ html()->form('POST', route('support.note.delete', $note->id))->id('delete_note' . $note->id)->open() }}
+										@csrf
 										{{ html()->form()->close() }}
 										<a href="#" class="text-danger" onclick="SubmitConfirmDialog('Delete note permanently?','Delete Note',$('#delete_note{{$note->id}}'))"><i class="fas fa-trash-alt"></i></a>
 									</div>
@@ -143,33 +145,41 @@ Administration - Support Ticket Detail
 						</div>
 						{{ html()->form('POST', route('support.note.save', $ticket->id))->open() }}
 							{{ html()->label('New Note:', 'note')->class('form-label') }}
-							{{ html()->textarea('note', old('note'))->required() }}<br>
+							{{ html()->textarea('note', old('note'))->class('form-control')->required() }}<br>
 							{{ html()->input('submit')->value('Save Note')->class('btn btn-warning') }}
 						{{ html()->form()->close() }}
 					</div>
 					<div class="mb-3 p-3 bg-light">
 						<h3>Attached Files:</h3>
 						<div class="mb-3">
-							@foreach($ticket->files as $file)
-								<div class="row align-items-center">
-									<div class="col-sm-1">
-										{{ html()->form('POST', route('support.delete.file', $file->id))->id('delete_file' . $file->id)->open() }}
-										{{ html()->form()->close() }}
-										<a href="#" class="text-danger" onclick="SubmitConfirmDialog('Delete {{$file->original}} permanently?','Delete File',$('#delete_file{{$file->id}}'))"><i class="fas fa-trash-alt"></i></a>
+							@if(!empty($ticket->files))
+								@foreach($ticket->files as $file)
+									<div class="row align-items-center">
+										<div class="col-sm-1">
+											{{ html()->form('POST', route('support.delete.file', $file->id))->id('delete_file' . $file->id)->open() }}
+											@csrf
+											{{ html()->form()->close() }}
+											<a href="#" class="text-danger" onclick="SubmitConfirmDialog('Delete {{$file->original}} permanently?','Delete File',$('#delete_file{{$file->id}}'))"><i class="fas fa-trash-alt"></i></a>
+										</div>
+										<div class="col-sm-3">
+											{{date_format($file->created_at,'m/d')}}<br>
+											{{date_format($file->created_at,'h:i a')}}
+										</div>
+										<div class="col-sm">
+											<a href="{{route('support.download',$file->id)}}">{{$file->original}}</a>
+										</div>
 									</div>
-									<div class="col-sm-3">
-										{{date_format($file->created_at,'m/d')}}<br>
-										{{date_format($file->created_at,'h:i a')}}
-									</div>
-									<div class="col-sm">
-										<a href="{{route('support.download',$file->id)}}">{{$file->original}}</a>
-									</div>
-								</div>
-							@endforeach
+								@endforeach
+							@endif
 						</div>
+						@if ($errors->has('document'))
+							<p><span class="help-block">
+								<strong>There was an error with the file, please try another.</strong>
+							</span></p>
+						@endif
 						{{ html()->form('POST', route('support.upload', $ticket->id))->acceptsFiles()->open() }}
 							<div class="mb-2">
-								{{ html()->file('document', ['required'])->attributes(null) }}
+								{{ html()->file('document', ['required']) }}
 							</div>
 							{{ html()->input('submit')->value('Upload')->class('btn btn-warning') }}
 						{{ html()->form()->close() }}
