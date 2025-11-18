@@ -8,7 +8,6 @@ use App\Models\Student;
 
 class Controller
 {
-
     protected $settings;
 
     /**

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 use App\Exports\CorrespondenceRegistrationsExport;
 use App\Exports\DonationsExport;
 use App\Exports\EventRegistrationsExport;
@@ -31,6 +29,7 @@ use App\Models\Ticket;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\View\View;
 
 class AdminController extends Controller implements HasMiddleware
