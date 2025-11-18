@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Models\CorrespondenceCourse;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -15,7 +16,7 @@ class CorrespondenceImport implements ToModel, WithMultipleSheets, WithStartRow
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function model(array $row)
+    public function model(array $row): ?Model
     {
         return new CorrespondenceCourse([
             'schoolyear' => $row[0],

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Exports\CorrespondenceRegistrationsExport;
 use App\Exports\DonationsExport;
 use App\Exports\EventRegistrationsExport;
@@ -47,7 +49,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): View
     {
         // $status=array();
         // $status['settings']['general']=(object)$this->settings->getGroup('general')->pluck('s_value','s_name')->all();
@@ -70,7 +72,7 @@ class AdminController extends Controller
         return view('home', compact('registrations'));
     }
 
-    public function settingsGeneral()
+    public function settingsGeneral(): View
     {
         $status = [];
         $status['settings']['general'] = (object) $this->settings->getGroup('general')->pluck('s_value', 's_name')->all();
@@ -81,7 +83,7 @@ class AdminController extends Controller
         return view('admin.settings.general', $status);
     }
 
-    public function settingsContent()
+    public function settingsContent(): View
     {
         $hd_company = $this->settings->get('hd_company', 'editor');
         if (is_null($hd_company)) {
@@ -97,7 +99,7 @@ class AdminController extends Controller
         return view('admin.settings.content', $status);
     }
 
-    public function settingsRegistration()
+    public function settingsRegistration(): View
     {
         $status = [];
         $status['settings']['status'] = (object) $this->settings->getGroup('status')->pluck('s_value', 's_name')->all();
@@ -109,7 +111,7 @@ class AdminController extends Controller
         return view('admin.settings.registration', $status);
     }
 
-    public function settingsRegistrationContent()
+    public function settingsRegistrationContent(): View
     {
         $status = [];
         $status['settings']['editor'] = (object) $this->settings->getGroup('editor')->pluck('s_value', 's_name')->all();
@@ -235,7 +237,7 @@ class AdminController extends Controller
         //		return $this->index();
     }
 
-    public function uploads()
+    public function uploads(): View
     {
         return view('admin.uploads');
     }
@@ -323,7 +325,7 @@ class AdminController extends Controller
         return \Redirect::route('admin.uploads')->with('message', 'Ticket upload completed successfully');
     }
 
-    public function donationsViewPage()
+    public function donationsViewPage(): View
     {
         return view('admin.view-donations-dashboard');
     }
@@ -349,7 +351,7 @@ class AdminController extends Controller
         return view('admin.view-donations', compact('donations'));
     }
 
-    public function registrationViewPage()
+    public function registrationViewPage(): View
     {
         return view('admin.view-registrations-dashboard');
     }
@@ -382,7 +384,7 @@ class AdminController extends Controller
         }
     }
 
-    public function downloads()
+    public function downloads(): View
     {
         return view('admin.downloads');
     }
@@ -547,7 +549,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function coupons(Coupon $coupon)
+    public function coupons(Coupon $coupon): View
     {
         $coupons = Coupon::all();
         if (! is_null($coupon->id)) {
@@ -598,7 +600,7 @@ class AdminController extends Controller
      * @param  App\Http\Requests  $request
      * @return \Illuminate\Http\Response
      */
-    public function couponSave(Request $request)
+    public function couponSave(Request $request): RedirectResponse
     {
         $coupon = Coupon::where('id', '=', $request->id)->first();
         if (! empty($coupon)) {

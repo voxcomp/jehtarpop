@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Models\CorrespondenceCourse;
 use App\Models\Coupon;
 use App\Models\Course;
@@ -32,7 +33,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): View
     {
         // $content = \DB::table('settings')->where('name','like','fp_%')->get()->pluck('value','name');
         $events = Event::where('event', 1)->count();
@@ -256,7 +257,7 @@ class HomeController extends Controller
             die();
         }
     */
-    public function balancePayment(Student $student)
+    public function balancePayment(Student $student): View
     {
         if ($student->balance > 0) {
             return view('balancePayment', compact('student'));
@@ -265,7 +266,7 @@ class HomeController extends Controller
         }
     }
 
-    public function freePayment()
+    public function freePayment(): View
     {
         return view('freePayment');
     }
@@ -275,7 +276,7 @@ class HomeController extends Controller
      *
      * @param  string  $coupon
      */
-    public function coupon($coupon = null, $path = 'event')
+    public function coupon(string $coupon = null, $path = 'event')
     {
         $cost = 0;
         if (! session()->has($path.'registration')) {
@@ -308,7 +309,7 @@ class HomeController extends Controller
         exit();
     }
 
-    public function test($path = null)
+    public function test($path = null): View
     {
         // $settings=\DB::table('settings')->get();
         // foreach($settings as $set) {

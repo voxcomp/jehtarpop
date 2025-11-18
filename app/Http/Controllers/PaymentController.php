@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Events\RegistrationProcessed;
 use App\Http\Repositories\hostedPaymentRepository;
 use App\Http\Requests\CardVerificationRequest;
@@ -322,7 +323,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function paymentResponse()
+    public function paymentResponse(): View
     {
         return view('registration.payment-response');
     }
@@ -502,7 +503,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function balancePayment(Request $request, Student $student)
+    public function balancePayment(Request $request, Student $student): View
     {
         if ($student->balance > 0) {
             $anpay = new hostedPaymentRepository;
@@ -515,7 +516,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function balanceComplete(Request $request, Student $student)
+    public function balanceComplete(Request $request, Student $student): View
     {
         if ($student->balance > 0) {
             $isPaymentExist = Payment::where('transaction_id', $request->transactionid)->first();
@@ -556,7 +557,7 @@ class PaymentController extends Controller
     }
 
     /*
-        public function balancePayment(CardVerificationRequest $request, Student $student) {
+        public function balancePayment(CardVerificationRequest $request, Student $student): View {
             $validatedData = $request->validated();
 
             $newCard = (object)[];

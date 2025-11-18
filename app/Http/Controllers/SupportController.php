@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Registration;
 use App\Models\SupportTicket;
 use App\Models\SupportTicketFile;
@@ -20,12 +22,12 @@ class SupportController extends Controller
         parent::__construct();
     }
 
-    public function showPage()
+    public function showPage(): View
     {
         return view('support.form');
     }
 
-    public function showPagePath($path)
+    public function showPagePath($path): View
     {
         if (session()->has($path.'registration')) {
             $register = session()->get($path.'registration');
@@ -36,26 +38,26 @@ class SupportController extends Controller
         return view('support.form', compact('path'));
     }
 
-    public function showPageRegistration($path, Registration $registration)
+    public function showPageRegistration($path, Registration $registration): View
     {
         $payment = $registration->payment()->where('payment_status', 'hold')->first();
 
         return view('support.form', compact('path', 'registration', 'payment'));
     }
 
-    public function showList()
+    public function showList(): View
     {
         $tickets = SupportTicket::orderBy('created_at', 'DESC')->get();
 
         return view('support.list', compact('tickets'));
     }
 
-    public function showDetail(SupportTicket $ticket)
+    public function showDetail(SupportTicket $ticket): View
     {
         return view('support.detail', compact('ticket'));
     }
 
-    public function createTicket(Request $request)
+    public function createTicket(Request $request): RedirectResponse
     {
         $this->validate($request, [
             'title' => 'required|string|max:200',
@@ -124,7 +126,7 @@ class SupportController extends Controller
         }
     }
 
-    public function saveEmail(SupportTicket $ticket, Request $request)
+    public function saveEmail(SupportTicket $ticket, Request $request): RedirectResponse
     {
         $this->validate($request, [
             'email' => 'required|string|max:300',
@@ -135,7 +137,7 @@ class SupportController extends Controller
         return redirect()->back()->with('message', 'Email addresses saved.');
     }
 
-    public function saveNote(SupportTicket $ticket, Request $request)
+    public function saveNote(SupportTicket $ticket, Request $request): RedirectResponse
     {
         $this->validate($request, [
             'note' => 'required|string',
@@ -145,14 +147,14 @@ class SupportController extends Controller
         return redirect()->back()->with('message', 'Note saved.');
     }
 
-    public function deleteNote(SupportTicketNote $note)
+    public function deleteNote(SupportTicketNote $note): RedirectResponse
     {
         $note->delete();
 
         return redirect()->back()->with('message', 'Note deleted.');
     }
 
-    public function saveStatus(SupportTicket $ticket, Request $request)
+    public function saveStatus(SupportTicket $ticket, Request $request): RedirectResponse
     {
         $ticket->status = $request->status;
         $ticket->save();
@@ -160,7 +162,7 @@ class SupportController extends Controller
         return redirect()->back()->with('message', 'Status updated successfully.');
     }
 
-    public function showConfirmation($path)
+    public function showConfirmation($path): View
     {
         if (session()->has($path.'registration')) {
             $register = session()->get($path.'registration');
@@ -171,14 +173,14 @@ class SupportController extends Controller
         return view('support.confirmation', compact('path'));
     }
 
-    public function showConfirmationRegistration(Registration $registration)
+    public function showConfirmationRegistration(Registration $registration): View
     {
         $payment = $registration->payment()->where('payment_status', 'hold')->first();
 
         return view('support.confirmation', compact('registration', 'payment'));
     }
 
-    public function delete(SupportTicket $ticket)
+    public function delete(SupportTicket $ticket): RedirectResponse
     {
         $ticket->delete();
 

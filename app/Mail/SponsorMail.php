@@ -35,7 +35,7 @@ class SponsorMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
         if (! empty($this->donation->logo) && Storage::disk('public')->exists('logo/'.str_replace('/storage/logo/', '', $this->donation->logo))) {
             return $this->view('mail.sponsor')->attach(Storage::disk('public')->url('logo/'.str_replace('/storage/logo/', '', $this->donation->logo)));

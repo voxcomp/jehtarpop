@@ -30,7 +30,7 @@ class FreePaidMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
         return $this->view('mail.freePayment')->text('mail.freePaymenttext');
     }

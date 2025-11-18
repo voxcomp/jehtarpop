@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App\Http\Repositories\hostedPaymentRepository;
 use App\Models\CorrespondenceCourse;
 use App\Models\Course;
@@ -515,7 +516,7 @@ class RegistrationController extends Controller
     // ********************************************
     // ************ CONFIRMATION
 
-    public function confirmation($path, Registration $registration)
+    public function confirmation($path, Registration $registration): View
     {
         // \Mail::to("gwgci@voxcomp.com")->send(new \App\Mail\SendPaymentConfirmation($registration));
         return view('registration.confirmation', compact('path', 'registration'));

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use App\Http\Repositories\hostedPaymentRepository;
 use App\Models\Donation;
 use App\Models\Sponsoritem;
@@ -15,12 +17,12 @@ class DonationsController extends Controller
         parent::__construct();
     }
 
-    public function showPage()
+    public function showPage(): View
     {
         return view('donations.page');
     }
 
-    public function submitDonation(Request $request)
+    public function submitDonation(Request $request): RedirectResponse
     {
         if (! (isset($request->inkind) && $request->inkind == '101')) {
             $isDonationExist = Donation::where('sponsor', 0)->where('clientip', \Request::ip())->where('created_at', '>', Carbon::now()->subMinutes(2)->toDateTimeString())->first();
@@ -72,7 +74,7 @@ class DonationsController extends Controller
         }
     }
 
-    public function showPayment(Donation $donation)
+    public function showPayment(Donation $donation): View
     {
         $anpay = new hostedPaymentRepository;
 
@@ -81,7 +83,7 @@ class DonationsController extends Controller
         return view('donations.payment', compact('token', 'donation'));
     }
 
-    public function submitPayment(Request $request, Donation $donation)
+    public function submitPayment(Request $request, Donation $donation): RedirectResponse
     {
         if ($donation->id != 72682) {
             $donation->paid = $request->paid;
@@ -95,12 +97,12 @@ class DonationsController extends Controller
         return redirect()->route('donations.confirmation', $donation->id);
     }
 
-    public function showConfirmation(Donation $donation)
+    public function showConfirmation(Donation $donation): View
     {
         return view('donations.confirmation', compact('donation'));
     }
 
-    public function showProgress()
+    public function showProgress(): View
     {
         $total = (int) number_format(Donation::get()->sum('paid'), 2, '.', '');
         $goal = (int) number_format($this->settings->get('fund_goal', 'donation'), 0, '.', '');
@@ -114,14 +116,14 @@ class DonationsController extends Controller
     /******************* Sponsors *************************************************************************************************************************/
     /******************************/
 
-    public function showSponsorPage()
+    public function showSponsorPage(): View
     {
         $items = Sponsoritem::get();
 
         return view('sponsors.page', compact('items'));
     }
 
-    public function submitSponsor(Request $request)
+    public function submitSponsor(Request $request): RedirectResponse
     {
         if (! (isset($request->inkind) && $request->inkind == '101')) {
             $isDonationExist = Donation::where('sponsor', 1)->where('clientip', \Request::ip())->where('created_at', '>', Carbon::now()->subMinutes(2)->toDateTimeString())->first();
@@ -205,7 +207,7 @@ class DonationsController extends Controller
         }
     }
 
-    public function submitSponsorPaymentAlternate(Request $request, Donation $donation)
+    public function submitSponsorPaymentAlternate(Request $request, Donation $donation): RedirectResponse
     {
         $donation->paid = $donation->amount;
         $donation->paytype = 'check';
@@ -216,7 +218,7 @@ class DonationsController extends Controller
         return redirect()->route('sponsor.confirmation', $donation->id);
     }
 
-    public function showSponsorPayment(Donation $donation)
+    public function showSponsorPayment(Donation $donation): View
     {
         $anpay = new hostedPaymentRepository;
 
@@ -225,7 +227,7 @@ class DonationsController extends Controller
         return view('sponsors.payment', compact('token', 'donation'));
     }
 
-    public function submitSponsorPayment(Request $request, Donation $donation)
+    public function submitSponsorPayment(Request $request, Donation $donation): RedirectResponse
     {
         $donation->paid = $request->paid;
         $donation->cardno = substr($request->card, -4);
@@ -237,7 +239,7 @@ class DonationsController extends Controller
         return redirect()->route('sponsor.confirmation', $donation->id);
     }
 
-    public function showSponsorConfirmation(Donation $donation)
+    public function showSponsorConfirmation(Donation $donation): View
     {
         return view('sponsors.confirmation', compact('donation'));
     }

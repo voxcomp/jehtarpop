@@ -20,7 +20,7 @@ class Settings
      * @param  $s_name  string
      * @return string
      */
-    public static function get($s_name, $group = 'general', $default = null)
+    public static function get($s_name, $group = 'general', $default = null): string
     {
         $setting = Setting::where('s_name', '=', $s_name)->where('s_group', '=', $group)->first();
         if ($setting) {
@@ -36,7 +36,7 @@ class Settings
      * @param  $s_name  string
      * @return string
      */
-    public function gettype($s_name)
+    public function gettype($s_name): string
     {
         $setting = Setting::where('s_name', '=', $s_name)->first();
 
@@ -53,7 +53,7 @@ class Settings
      * @param  $s_name  string
      * @return string
      */
-    public function getencrypt($s_name)
+    public function getencrypt($s_name): string
     {
         $setting = Setting::where('s_name', '=', $s_name)->first();
 
@@ -71,7 +71,7 @@ class Settings
      * @param  $s_value  string
      * @return bool
      */
-    public static function set($display, $name, $value, $group = 'general', $s_css_selector = '', $s_css_property = '', $type = 'alpha_dash', $encrypt = false)
+    public static function set($display, $name, $value, $group = 'general', $s_css_selector = '', $s_css_property = '', $type = 'alpha_dash', $encrypt = false): bool
     {
         $get = Setting::where('s_name', '=', $name)->where('s_group', '=', $group)->first();
         if (! $get) {
@@ -131,7 +131,7 @@ class Settings
      * @param  $s_name  string
      * @return bool
      */
-    public function delete($s_name, $s_group = 'general')
+    public function delete($s_name, $s_group = 'general'): bool
     {
         $setting = Setting::where('s_name', '=', $s_name)->where('s_group', '=', $s_group)->delete();
     }
@@ -141,7 +141,7 @@ class Settings
      *
      * @return Collection
      */
-    public function all()
+    public function all(): Collection
     {
         return Setting::all();
     }
@@ -151,7 +151,7 @@ class Settings
      *
      * @return Collection
      */
-    public function getGroup($s_group = 'general')
+    public function getGroup($s_group = 'general'): Collection
     {
         return Setting::where('s_group', '=', $s_group)->orderBy('s_css_selector')->get();
     }
