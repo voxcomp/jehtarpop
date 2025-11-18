@@ -14,8 +14,8 @@
 	        There was an error submitting your information
 	    </div>
 	@endif
-	{!! Form::open(array('route' => ['registration.individual.save',$path], 'id'=>'indpayment_form')) !!}
-	{!! Form::hidden('indid','',['id'=>'indid']) !!}
+	{{ html()->form('POST', route('registration.individual.save', $path))->id('indpayment_form')->open() }}
+	{{ html()->hidden('indid', '')->id('indid') }}
 	<div class="row  justify-content-center">
 		<div class="col-sm">
 			@if($path=='event')
@@ -43,5 +43,5 @@
 		    </div>
 		</div>
 	</div>
-	{!! Form::close() !!}
+	{{ html()->form()->close() }}
 @endsection

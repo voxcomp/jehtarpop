@@ -8,7 +8,7 @@ Make A Sponsorship Donation
 	<div class="row justify-content-center">
 		<div class="col-lg-12">
 			<p>These are exciting times at Gould Construction Institute, ABC MA’s training affiliate! We have opened a brand new facility in Billerica, MA with all new training options and programs to serve the construction industry. In conjunction with this, we have launched a fundraising campaign to help defray building costs, and we are offering some great opportunities for you to be recognized for your support of GCI. Thank you for supporting Gould Construction Institute!</p>
-			{!! Form::open(array('route' => ['sponsor.submitDonation'],'class'=>'billingform','files'=>'true')) !!}
+			{{ html()->form('POST', route('sponsor.submitDonation', ))->class('billingform')->acceptsFiles()->open() }}
 			<div class="mb-3">
 				<div class="card-body">
 					<div class="row">
@@ -118,7 +118,7 @@ Make A Sponsorship Donation
 						<h3 class="mb-1"><strong>Brick Wall Sponsorship:</strong></h3>
 							<div class="ms-*">
 								@foreach($items->where('parent','Brick Wall Sponsorship') as $item)
-									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
+									<div>{{ html()->radio('sponsoritem', null, $item->id) }} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
 							</div>
 					</div>
@@ -126,7 +126,7 @@ Make A Sponsorship Donation
 						<h3 class="mb-1"><strong>Front Lobby Sponsorship:</strong><br><small>Donor Wall of Honor – "Educating our Future Construction Workforce"</small></h3>
 							<div class="ms-*">
 								@foreach($items->where('parent','Front Lobby Sponsorship') as $item)
-									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
+									<div>{{ html()->radio('sponsoritem', null, $item->id) }} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
 							</div>
 					</div>
@@ -134,7 +134,7 @@ Make A Sponsorship Donation
 						<h3 class="mb-1"><strong>Classroom Sponsorship:</strong></h3>
 							<div class="ms-*">
 								@foreach($items->where('parent','Classroom Sponsorship') as $item)
-									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
+									<div>{{ html()->radio('sponsoritem', null, $item->id) }} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
 							</div>
 					</div>
@@ -142,7 +142,7 @@ Make A Sponsorship Donation
 						<h3 class="mb-1"><strong>A/V Equipment Sponsorship:</strong></h3>
 							<div class="ms-*">
 								@foreach($items->where('parent','A/V Equipment Sponsorship') as $item)
-									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
+									<div>{{ html()->radio('sponsoritem', null, $item->id) }} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
 							</div>
 					</div>
@@ -150,7 +150,7 @@ Make A Sponsorship Donation
 						<h3 class="mb-1"><strong>Trophy Case Sponsorship:</strong></h3>
 							<div class="ms-*">
 								@foreach($items->where('parent','Trophy Case Sponsorship') as $item)
-									<div>{!!Form::radio('sponsoritem',$item->id)!!} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
+									<div>{{ html()->radio('sponsoritem', null, $item->id) }} {{$item->name}}: ${{$item->price}} ({{$item->qty-$item->sold}} available)</div>
 								@endforeach
 							</div>
 					</div>
@@ -159,8 +159,8 @@ Make A Sponsorship Donation
 			<div style="background:#E9E8E8" class="p-3">
 				<p>For Sponsorship recognition on our website, please upload your logo or the image you would like displayed on the GCI "Road to Billerica" Fundraising Campaign page. This is not required if you do not wish your sponsorship to be presented on the page.</p>
 				<div class="{{ $errors->has('logo') ? ' has-error' : '' }}">
-					{!! Form::label('logo', __('Upload a logo or image').":", ['class'=>'form-label']) !!}
-					{!!Form::file('logo',["id"=>"image","class"=>""])!!}
+					{{ html()->label(__('Upload a logo or image') . ":", 'logo')->class('form-label') }}
+					{{ html()->file('logo')->id("image")->class("") }}
 					@if ($errors->has('logo'))
 						<span class="help-block">
 							<strong>{{ $errors->first('logo') }}</strong>
@@ -173,7 +173,7 @@ Make A Sponsorship Donation
 			@if(\Auth::check() && \Auth::user()->usertype=="admin")
 				<div class="row form-group">
 					<div class="col-sm">
-						{!! Form::checkbox('inkind',101) !!} <strong>Offline donation</strong> (no payment screen)
+						{{ html()->checkbox('inkind', null, 101) }} <strong>Offline donation</strong> (no payment screen)
 					</div>
 				</div>
 			@endif
@@ -182,7 +182,7 @@ Make A Sponsorship Donation
 					<input type="submit" class="btn btn-primary" value="Continue">
 				</div>
 			</div>
-			{!! Form::close() !!}
+			{{ html()->form()->close() }}
 		</div>
 	</div>
 @endsection

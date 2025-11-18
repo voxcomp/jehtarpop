@@ -10,8 +10,8 @@ Administration - Support Ticket Detail
 		<h3><a href="{{route('support.list')}}"><i class="fas fa-chevron-circle-left"></i> View All Support Tickets</a></h3>
 	</div>
 	<div class="col text-right">
-		{!! Form::open(array('route' => ['support.delete',$ticket->id], 'id'=>'delete_ticket')) !!}
-		{!! Form::close() !!}
+		{{ html()->form('POST', route('support.delete', $ticket->id))->id('delete_ticket')->open() }}
+		{{ html()->form()->close() }}
 		<a href="#" class="btn btn-danger" onclick="SubmitConfirmDialog('Delete this support ticket permanently?','Delete Ticket',$('#delete_ticket'))">Delete Ticket</a>
 	</div>
 </div>
@@ -37,11 +37,11 @@ Administration - Support Ticket Detail
 					@endif
 					<div class="mb-3 p-3">
 						<h3>Issue Contact Emails:</h3>
-						{!! Form::open(array('route' => ['support.email.save',$ticket->id])) !!}
-							{!! Form::label('email', 'Email Addresses:', ['class'=>'form-label']) !!}
-							{!! Form::text('email', old('email',$ticket->email), ['class'=>'form-control','required']) !!}<br>
-							{!! Form::submit('Save',['class'=>'btn btn-warning']) !!}
-						{!! Form::close() !!}
+						{{ html()->form('POST', route('support.email.save', $ticket->id))->open() }}
+							{{ html()->label('Email Addresses:', 'email')->class('form-label') }}
+							{{ html()->text('email', old('email', $ticket->email))->class('form-control')->required() }}<br>
+							{{ html()->input('submit')->value('Save')->class('btn btn-warning') }}
+						{{ html()->form()->close() }}
 					</div>
 					@if(!empty($ticket->registration))
 						<?php $register = unserialize($ticket->registration); ?>
@@ -114,12 +114,12 @@ Administration - Support Ticket Detail
 				<div class="col-sm-4 mb-3">
 					<div class="mb-3 p-3 bg-light">
 						<h3>Issue Status:</h3>
-						{!! Form::open(array('route' => ['support.status',$ticket->id],'id'=>'status_form')) !!}
-							{!! Form::label('status', 'Status', ['class'=>'form-label']) !!}
-							{!! Form::radio('status', 'open', (($ticket->status=='open')?true:false),['onchange'=>'this.form.submit()']) !!} Open<br>
-							{!! Form::radio('status', 'working', (($ticket->status=='working')?true:false),['onchange'=>'this.form.submit()']) !!} In Progress<br>
-							{!! Form::radio('status', 'closed', (($ticket->status=='closed')?true:false),['onchange'=>'this.form.submit()']) !!} Closed
-						{!! Form::close() !!}
+						{{ html()->form('POST', route('support.status', $ticket->id))->id('status_form')->open() }}
+							{{ html()->label('Status', 'status')->class('form-label') }}
+							{{ html()->radio('status', $ticket->status == 'open' ? true : false, 'open')->attribute('onchange', 'this.form.submit()') }} Open<br>
+							{{ html()->radio('status', $ticket->status == 'working' ? true : false, 'working')->attribute('onchange', 'this.form.submit()') }} In Progress<br>
+							{{ html()->radio('status', $ticket->status == 'closed' ? true : false, 'closed')->attribute('onchange', 'this.form.submit()') }} Closed
+						{{ html()->form()->close() }}
 					</div>
 					<div class="mb-3 p-3">
 						<h3>Issue Notes:</h3>
@@ -127,8 +127,8 @@ Administration - Support Ticket Detail
 							@foreach($ticket->notes as $note)
 								<div class="row align-items-center">
 									<div class="col-sm-1">
-										{!! Form::open(array('route' => ['support.note.delete',$note->id], 'id'=>'delete_note'.$note->id)) !!}
-										{!! Form::close() !!}
+										{{ html()->form('POST', route('support.note.delete', $note->id))->id('delete_note' . $note->id)->open() }}
+										{{ html()->form()->close() }}
 										<a href="#" class="text-danger" onclick="SubmitConfirmDialog('Delete note permanently?','Delete Note',$('#delete_note{{$note->id}}'))"><i class="fas fa-trash-alt"></i></a>
 									</div>
 									<div class="col-sm-3">
@@ -141,11 +141,11 @@ Administration - Support Ticket Detail
 								</div>
 							@endforeach
 						</div>
-						{!! Form::open(array('route' => ['support.note.save',$ticket->id])) !!}
-							{!! Form::label('note', 'New Note:', ['class'=>'form-label']) !!}
-							{!! Form::textarea('note', old('note'), ['required']) !!}<br>
-							{!! Form::submit('Save Note',['class'=>'btn btn-warning']); !!}
-						{!! Form::close() !!}
+						{{ html()->form('POST', route('support.note.save', $ticket->id))->open() }}
+							{{ html()->label('New Note:', 'note')->class('form-label') }}
+							{{ html()->textarea('note', old('note'))->required() }}<br>
+							{{ html()->input('submit')->value('Save Note')->class('btn btn-warning') }}
+						{{ html()->form()->close() }}
 					</div>
 					<div class="mb-3 p-3 bg-light">
 						<h3>Attached Files:</h3>
@@ -153,8 +153,8 @@ Administration - Support Ticket Detail
 							@foreach($ticket->files as $file)
 								<div class="row align-items-center">
 									<div class="col-sm-1">
-										{!! Form::open(array('route' => ['support.delete.file',$file->id], 'id'=>'delete_file'.$file->id)) !!}
-										{!! Form::close() !!}
+										{{ html()->form('POST', route('support.delete.file', $file->id))->id('delete_file' . $file->id)->open() }}
+										{{ html()->form()->close() }}
 										<a href="#" class="text-danger" onclick="SubmitConfirmDialog('Delete {{$file->original}} permanently?','Delete File',$('#delete_file{{$file->id}}'))"><i class="fas fa-trash-alt"></i></a>
 									</div>
 									<div class="col-sm-3">
@@ -167,12 +167,12 @@ Administration - Support Ticket Detail
 								</div>
 							@endforeach
 						</div>
-						{!! Form::open(array('route' => ['support.upload',$ticket->id],'files'=>true)) !!}
+						{{ html()->form('POST', route('support.upload', $ticket->id))->acceptsFiles()->open() }}
 							<div class="mb-2">
-								{!! Form::file('document', null, ['required']) !!}
+								{{ html()->file('document', ['required'])->attributes(null) }}
 							</div>
-							{!! Form::submit('Upload',['class'=>'btn btn-warning']); !!}
-						{!! Form::close() !!}
+							{{ html()->input('submit')->value('Upload')->class('btn btn-warning') }}
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>

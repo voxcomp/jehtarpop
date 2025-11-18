@@ -16,11 +16,11 @@ Administration - Registration Content Settings
 		
 					<div class="card-body">
 						<p>Shown in a popup when a registrant chooses check or invoice payment.</p>
-						{!!Form::open(array('route'=>'paymentAgree','id'=>'paymentAgree_form'))!!}
+						{{ html()->form('POST', route('paymentAgree'))->id('paymentAgree_form')->open() }}
 						<div class="row">
 							<div class="col-sm">
 								<div class="form-group">
-								{!! Form::hidden('paymentAgree',$settings['editor']->paymentAgree,['id'=>'paymentAgree']) !!}
+								{{ html()->hidden('paymentAgree', $settings['editor']->paymentAgree)->id('paymentAgree') }}
 								<div id="paymentAgree_toolbar"></div>
 								<div id="paymentAgree_content">
 									{!! $settings['editor']->paymentAgree !!}
@@ -29,8 +29,8 @@ Administration - Registration Content Settings
 								</div>
 							</div>
 						</div>
-						<div class="form-group">{!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group">{{ html()->input('submit')->value('Submit')->class('btn btn-primary') }}</div>
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>
@@ -43,17 +43,17 @@ Administration - Registration Content Settings
 					<div class="card-header">Trade Agreement Checkboxes</div>
 	
 					<div class="card-body">
-						{!!Form::open(array('route'=>'registrationTradeAgree'))!!}
+						{{ html()->form('POST', route('registrationTradeAgree'))->open() }}
 						<div class="row">
 							<div class="col-sm">
 								<p>Add an agreement checkbox when a specific trade is chosen during registration.  The trade name must exactly match those in the registration dropdown.</p>
 								<div class="form-group">
 									<label for='trade'>Trade:</label>
-									{!!Form::text('trade',old('trade'),['class'=>'form-control'])!!}
+									{{ html()->text('trade', old('trade'))->class('form-control') }}
 								</div>
 								<div class="form-group">
 									<label for='cbmessage'>Checkbox Content:</label>
-									{!!Form::textarea('message',old('message'),['class'=>'form-control'])!!}
+									{{ html()->textarea('message', old('message'))->class('form-control') }}
 								</div>
 							</div>
 							<div class="col-sm">
@@ -70,8 +70,8 @@ Administration - Registration Content Settings
 								</table>
 							</div>
 						</div>
-						<div class="form-group">{!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group">{{ html()->input('submit')->value('Submit')->class('btn btn-primary') }}</div>
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>
@@ -86,14 +86,14 @@ Administration - Registration Content Settings
 					<div class="card-body">
 						<div class="row">
 							<div class="col-sm-4 mb-4">
-								{!!Form::select('classes',$classlist,null,['id'=>'classlist','class'=>'form-control'])!!}
+								{{ html()->select('classes', $classlist)->id('classlist')->class('form-control') }}
 								<div class="help-block" id="classDescriptionMessage"></div>
 							</div>
 							<div class="col-sm-8">
-								{!!Form::open(array('route'=>'classDescription','id'=>'description_form'))!!}
-								{!!Form::textarea('classDescription','',['class'=>'form_control','id'=>'classDescription','data-id'=>'0'])!!}<br>
-								{!!Form::submit('Save Description',['class'=>'btn btn-primary','style'=>'display:none;','id'=>'classDescriptionSubmit'])!!}
-								{!!Form::close()!!}
+								{{ html()->form('POST', route('classDescription'))->id('description_form')->open() }}
+								{{ html()->textarea('classDescription', '')->class('form_control')->id('classDescription')->data('id', '0') }}<br>
+								{{ html()->input('submit')->value('Save Description')->class('btn btn-primary')->style('display:none;')->id('classDescriptionSubmit') }}
+								{{ html()->form()->close() }}
 							</div>
 						</div>
 					</div>

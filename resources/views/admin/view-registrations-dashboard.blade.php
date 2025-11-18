@@ -11,11 +11,11 @@ Administration - View Registrations
 	                <div class="card-header">View Trade Class Registrations</div>
 	
 	                <div class="card-body">
-						{!!Form::open(array('route'=>'viewRegistrations'))!!}
-						{!!Form::hidden('regtype',\Crypt::encrypt('trade'))!!}
+						{{ html()->form('POST', route('viewRegistrations'))->open() }}
+						{{ html()->hidden('regtype', \Crypt::encrypt('trade')) }}
 						<div class="row">
 							<div class="col-sm">
-								<div class="form-group"><label>Start Date</label>{!!Form::text('start', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>Start Date</label>{{ html()->text('start')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('start'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('start') }}</strong>
@@ -23,7 +23,7 @@ Administration - View Registrations
 					            @endif
 							</div>
 							<div class="col-sm">
-								<div class="form-group"><label>End Date</label>{!!Form::text('end', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>End Date</label>{{ html()->text('end')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('end'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('end') }}</strong>
@@ -32,10 +32,10 @@ Administration - View Registrations
 							</div>
 						</div>
 						<div class="form-group">
-							{!!Form::checkbox("hold",1)!!} Show only registrations on <strong>hold</strong>
+							{{ html()->checkbox("hold", null, 1) }} Show only registrations on <strong>hold</strong>
 						</div>
-						<div class="form-group"><label>&nbsp;</label>{!!Form::submit('View',['class'=>'btn btn-danger'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group"><label>&nbsp;</label>{{ html()->input('submit')->value('View')->class('btn btn-danger') }}</div>
+						{{ html()->form()->close() }}
 	                </div>
 	            </div>
 		    </div>
@@ -44,11 +44,11 @@ Administration - View Registrations
 	                <div class="card-header">View Event Registrations</div>
 	
 	                <div class="card-body">
-						{!!Form::open(array('route'=>'viewRegistrations'))!!}
-						{!!Form::hidden('regtype',\Crypt::encrypt('event'))!!}
+						{{ html()->form('POST', route('viewRegistrations'))->open() }}
+						{{ html()->hidden('regtype', \Crypt::encrypt('event')) }}
 						<div class="row">
 							<div class="col-sm">
-								<div class="form-group"><label>Start Date</label>{!!Form::text('start', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>Start Date</label>{{ html()->text('start')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('start'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('start') }}</strong>
@@ -56,7 +56,7 @@ Administration - View Registrations
 					            @endif
 							</div>
 							<div class="col-sm">
-								<div class="form-group"><label>End Date</label>{!!Form::text('end', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>End Date</label>{{ html()->text('end')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('end'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('end') }}</strong>
@@ -65,10 +65,10 @@ Administration - View Registrations
 							</div>
 						</div>
 						<div class="form-group">
-							{!!Form::checkbox("hold",1)!!} Show only registrations on <strong>hold</strong>
+							{{ html()->checkbox("hold", null, 1) }} Show only registrations on <strong>hold</strong>
 						</div>
-						<div class="form-group"><label>&nbsp;</label>{!!Form::submit('View',['class'=>'btn btn-danger'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group"><label>&nbsp;</label>{{ html()->input('submit')->value('View')->class('btn btn-danger') }}</div>
+						{{ html()->form()->close() }}
 	                </div>
 	            </div>
 		    </div>
@@ -80,11 +80,11 @@ Administration - View Registrations
 	                <div class="card-header">View Correspondence Class Registrations</div>
 	
 	                <div class="card-body">
-						{!!Form::open(array('route'=>'viewRegistrations'))!!}
-						{!!Form::hidden('regtype',\Crypt::encrypt('correspondence'))!!}
+						{{ html()->form('POST', route('viewRegistrations'))->open() }}
+						{{ html()->hidden('regtype', \Crypt::encrypt('correspondence')) }}
 						<div class="row">
 							<div class="col-sm">
-								<div class="form-group"><label>Start Date</label>{!!Form::text('start', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>Start Date</label>{{ html()->text('start')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('start'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('start') }}</strong>
@@ -92,7 +92,7 @@ Administration - View Registrations
 					            @endif
 							</div>
 							<div class="col-sm">
-								<div class="form-group"><label>End Date</label>{!!Form::text('end', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>End Date</label>{{ html()->text('end')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('end'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('end') }}</strong>
@@ -101,10 +101,10 @@ Administration - View Registrations
 							</div>
 						</div>
 						<div class="form-group">
-							{!!Form::checkbox("hold",1)!!} Show only registrations on <strong>hold</strong>
+							{{ html()->checkbox("hold", null, 1) }} Show only registrations on <strong>hold</strong>
 						</div>
-						<div class="form-group"><label>&nbsp;</label>{!!Form::submit('View',['class'=>'btn btn-danger'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group"><label>&nbsp;</label>{{ html()->input('submit')->value('View')->class('btn btn-danger') }}</div>
+						{{ html()->form()->close() }}
 	                </div>
 	            </div>
 		    </div>
@@ -113,11 +113,11 @@ Administration - View Registrations
 	                <div class="card-header">View Online Class Registrations</div>
 	
 	                <div class="card-body">
-						{!!Form::open(array('route'=>'viewRegistrations'))!!}
-						{!!Form::hidden('regtype',\Crypt::encrypt('online'))!!}
+						{{ html()->form('POST', route('viewRegistrations'))->open() }}
+						{{ html()->hidden('regtype', \Crypt::encrypt('online')) }}
 						<div class="row">
 							<div class="col-sm">
-								<div class="form-group"><label>Start Date</label>{!!Form::text('start', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>Start Date</label>{{ html()->text('start')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('start'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('start') }}</strong>
@@ -125,7 +125,7 @@ Administration - View Registrations
 					            @endif
 							</div>
 							<div class="col-sm">
-								<div class="form-group"><label>End Date</label>{!!Form::text('end', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>End Date</label>{{ html()->text('end')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('end'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('end') }}</strong>
@@ -134,10 +134,10 @@ Administration - View Registrations
 							</div>
 						</div>
 						<div class="form-group">
-							{!!Form::checkbox("hold",1)!!} Show only registrations on <strong>hold</strong>
+							{{ html()->checkbox("hold", null, 1) }} Show only registrations on <strong>hold</strong>
 						</div>
-						<div class="form-group"><label>&nbsp;</label>{!!Form::submit('View',['class'=>'btn btn-danger'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group"><label>&nbsp;</label>{{ html()->input('submit')->value('View')->class('btn btn-danger') }}</div>
+						{{ html()->form()->close() }}
 	                </div>
 	            </div>
 		    </div>
@@ -149,11 +149,11 @@ Administration - View Registrations
 					<div class="card-header">View Training Registrations</div>
 			
 					<div class="card-body">
-						{!!Form::open(array('route'=>'viewRegistrations'))!!}
-						{!!Form::hidden('regtype',\Crypt::encrypt('training'))!!}
+						{{ html()->form('POST', route('viewRegistrations'))->open() }}
+						{{ html()->hidden('regtype', \Crypt::encrypt('training')) }}
 						<div class="row">
 							<div class="col-sm">
-								<div class="form-group"><label>Start Date</label>{!!Form::text('start', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>Start Date</label>{{ html()->text('start')->class('form-control datepicker')->required() }}</div>
 								@if ($errors->has('start'))
 									<span class="help-block">
 										<strong>{{ $errors->first('start') }}</strong>
@@ -161,7 +161,7 @@ Administration - View Registrations
 								@endif
 							</div>
 							<div class="col-sm">
-								<div class="form-group"><label>End Date</label>{!!Form::text('end', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>End Date</label>{{ html()->text('end')->class('form-control datepicker')->required() }}</div>
 								@if ($errors->has('end'))
 									<span class="help-block">
 										<strong>{{ $errors->first('end') }}</strong>
@@ -170,10 +170,10 @@ Administration - View Registrations
 							</div>
 						</div>
 						<div class="form-group">
-							{!!Form::checkbox("hold",1)!!} Show only registrations on <strong>hold</strong>
+							{{ html()->checkbox("hold", null, 1) }} Show only registrations on <strong>hold</strong>
 						</div>
-						<div class="form-group"><label>&nbsp;</label>{!!Form::submit('View',['class'=>'btn btn-danger'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group"><label>&nbsp;</label>{{ html()->input('submit')->value('View')->class('btn btn-danger') }}</div>
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>

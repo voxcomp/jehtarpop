@@ -16,7 +16,7 @@
 	@endif
 	
 	@if(isset($students) && !empty($students))
-		{!! Form::open(array('route' => ['registration.registrant.save',$path], 'id'=>'existing_registrant_form')) !!}
+		{{ html()->form('POST', route('registration.registrant.save', $path))->id('existing_registrant_form')->open() }}
 		<div class="row  justify-content-center">
 			<div class="col-sm">
 				<div class="card">
@@ -24,18 +24,18 @@
 		
 		            <div class="card-body">
 			            <p>Select an existing employee from the list</p>
-			            {!! Form::select('employee',[""=>"Select..."]+$students,old('employee'),['class'=>'form-control','id'=>'employee','onchange'=>'getStudentInformation(this.value)']) !!}
+			            {{ html()->select('employee', ["" => "Select..."] + $students, old('employee'))->class('form-control')->id('employee')->attribute('onchange', 'getStudentInformation(this.value)') }}
 			            <div class="student-error alert alert-danger nohide" style="margin-top:15px;display:none;"></div>
 		            </div>
 		        </div>
 			</div>
 		</div>
 		<p>&nbsp;</p>
-		{!! Form::close() !!}
+		{{ html()->form()->close() }}
 	@endif
 	
-	{!! Form::open(array('route' => ['registration.registrant.save',$path], 'id'=>'registrant_form')) !!}
-	{!! Form::hidden('indid','',['id'=>'indid']) !!}
+	{{ html()->form('POST', route('registration.registrant.save', $path))->id('registrant_form')->open() }}
+	{{ html()->hidden('indid', '')->id('indid') }}
 	<div class="row  justify-content-center">
 		<div class="col-sm">
 			@if(!$first)
@@ -68,7 +68,7 @@
 		    </div>
 		</div>
 	</div>
-	{!! Form::close() !!}
+	{{ html()->form()->close() }}
 @endsection
 
 @section('rightsidebar')

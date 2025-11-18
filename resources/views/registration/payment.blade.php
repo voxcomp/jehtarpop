@@ -27,7 +27,7 @@
 		
 		            <div class="card-body">
 			            <div class="form-group">
-							{!!Form::text('due',old('due',number_format($cost,2,".","")),['id'=>'due','class'=>'form-control','onkeyup'=>'copyDue(this.value)'])!!}
+							{{ html()->text('due', old('due', number_format($cost, 2, ".", "")))->id('due')->class('form-control')->attribute('onkeyup', 'copyDue(this.value)') }}
 			            </div>
 						<div class="row">
 							<div class="col-sm">
@@ -44,10 +44,10 @@
 		            <div class="card-body">
 						<div class="row">
 							<div class="col-sm">
-								 {{Form::radio('responsible', 'company', true, ['onclick'=>"copyResponsible(this.value)"])}} COMPANY
+								 {{ html()->radio('responsible', true, 'company')->attribute('onclick', "copyResponsible(this.value)") }} COMPANY
 						    </div>
 							<div class="col-sm">
-								 {{Form::radio('responsible', 'student', false, ['onclick'=>"copyResponsible(this.value)"])}} STUDENT
+								 {{ html()->radio('responsible', false, 'student')->attribute('onclick', "copyResponsible(this.value)") }} STUDENT
 						    </div>
 						</div>
 		            </div>
@@ -68,25 +68,25 @@
 			@if($path!='online')
 			<div class="row">
 				<div class="col-sm">
-					{!! Form::open(array('route' => ['registration.payment.alt',$path],'class'=>'paymentform','id'=>'checkPayment_form')) !!}
-					{!!Form::hidden('applied','',['class'=>'applied'])!!}
-					{!!Form::hidden('ponum','',['class'=>'ponum'])!!}
-					{!!Form::hidden('responsible',$responsible,['class'=>'responsible'])!!}
-					{!!Form::hidden('coupon','',['class'=>'coupon'])!!}
-					{!!Form::hidden('method','check')!!}
+					{{ html()->form('POST', route('registration.payment.alt', $path))->class('paymentform')->id('checkPayment_form')->open() }}
+					{{ html()->hidden('applied', '')->class('applied') }}
+					{{ html()->hidden('ponum', '')->class('ponum') }}
+					{{ html()->hidden('responsible', $responsible)->class('responsible') }}
+					{{ html()->hidden('coupon', '')->class('coupon') }}
+					{{ html()->hidden('method', 'check') }}
 					<p class="text-center"><a onclick="SubmitConfirmDialog('{{getPaymentAgree()}}','Payment Agreement',$('#checkPayment_form'))" class="btn btn-warning btn-lg d-block w-100"><strong><big><i class="fas fa-money-check-alt text-primary"></i></big> Pay with Check</strong></a></p>
-					{!! Form::close() !!}
+					{{ html()->form()->close() }}
 				</div>
 				@if($registration['name']!='Self Students' && $path!='online')
 				<div class="col-sm">
-					{!! Form::open(array('route' => ['registration.payment.alt',$path],'class'=>'paymentform', 'id'=>'invoicePayment_form')) !!}
-					{!!Form::hidden('applied','',['class'=>'applied'])!!}
-					{!!Form::hidden('ponum','',['class'=>'ponum'])!!}
-					{!!Form::hidden('responsible',$responsible,['class'=>'responsible'])!!}
-					{!!Form::hidden('coupon','',['class'=>'coupon'])!!}
-					{!!Form::hidden('method','invoice')!!}
+					{{ html()->form('POST', route('registration.payment.alt', $path))->class('paymentform')->id('invoicePayment_form')->open() }}
+					{{ html()->hidden('applied', '')->class('applied') }}
+					{{ html()->hidden('ponum', '')->class('ponum') }}
+					{{ html()->hidden('responsible', $responsible)->class('responsible') }}
+					{{ html()->hidden('coupon', '')->class('coupon') }}
+					{{ html()->hidden('method', 'invoice') }}
 					<p class="text-center"><a onclick="SubmitConfirmDialog('{{getPaymentAgree()}}','Payment Agreement',$('#invoicePayment_form'))" class="btn btn-warning btn-lg d-block w-100"><strong><big><i class="fas fa-file-alt text-primary"></i></big> Pay by Invoice</strong></a></p>
-					{!! Form::close() !!}
+					{{ html()->form()->close() }}
 				</div>
 				@endif
 			</div>
@@ -94,13 +94,13 @@
 			@endif
 			--}}
 			<p class="text-center"><big><i class="far fa-credit-card text-primary"></i></big> <strong>Pay with Credit Card or eCheck (ACH) below</strong></p>
-			{!! Form::open(array('route' => ['registration.payment.toCC',$path],'class'=>'paymentform', 'id'=>'ccpaymentform')) !!}
-			{!!Form::hidden('amount',$cost)!!}
-			{!!Form::hidden('reference','')!!}
-			{!!Form::hidden('applied','',['class'=>'applied'])!!}
-			{!!Form::hidden('ponum','',['class'=>'ponum'])!!}
-			{!!Form::hidden('responsible',$responsible,['class'=>'responsible'])!!}
-			{!!Form::hidden('coupon','',['class'=>'coupon'])!!}
+			{{ html()->form('POST', route('registration.payment.toCC', $path))->class('paymentform')->id('ccpaymentform')->open() }}
+			{{ html()->hidden('amount', $cost) }}
+			{{ html()->hidden('reference', '') }}
+			{{ html()->hidden('applied', '')->class('applied') }}
+			{{ html()->hidden('ponum', '')->class('ponum') }}
+			{{ html()->hidden('responsible', $responsible)->class('responsible') }}
+			{{ html()->hidden('coupon', '')->class('coupon') }}
 			<div class="card">
 				<div class="card-header">Billing Information</div>
 	
@@ -203,7 +203,7 @@
 			        <div class="row">
 						<div class="col-sm">
 							<div class="form-group{{ $errors->has('card_number') ? ' has-error' : '' }}">
-								{!! Form::text('card_number',null,['class'=>'form-control ccard','placeholder'=>'CARD NUMBER']) !!}
+								{{ html()->text('card_number')->class('form-control ccard')->placeholder('CARD NUMBER') }}
 					            @if ($errors->has('card_number'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('card_number') }}</strong>
@@ -215,7 +215,7 @@
 			        <div class="row">
 						<div class="col form-group{{ $errors->has('expiration_month') ? ' has-error' : '' }}">
 							<label for="expiration_month">Expire Month</label>
-							{!! Form::select('expiration_month',[1=>"January", 2=>"February", 3=>"March", 4=>"April", 5=>"May", 6=>"June", 7=>"July", 8=>"August", 9=>"September", 10=>"October", 11=>"November", 12=>"December"],1,['class'=>'form-control']) !!}
+							{{ html()->select('expiration_month', [1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"], 1)->class('form-control') }}
 				            @if ($errors->has('expiration_month'))
 				                <span class="help-block">
 				                    <strong>{{ $errors->first('expiration_month') }}</strong>
@@ -224,7 +224,7 @@
 						</div>
 						<div class="col form-group{{ $errors->has('expiration_year') ? ' has-error' : '' }}">
 							<label for="expiration_year">Expire Year</label>
-							{!! Form::select('expiration_year',[2022=>"2022",2023=>"2023",2024=>"2024",2025=>"2025",2026=>"2026",2027=>"2027",2028=>"2028",2029=>"2029",2030=>"2030",2031=>"2031",2032=>"2032",2033=>"2033",2034=>"2034"],date('Y'),['class'=>'form-control']) !!}
+							{{ html()->select('expiration_year', [2022 => "2022", 2023 => "2023", 2024 => "2024", 2025 => "2025", 2026 => "2026", 2027 => "2027", 2028 => "2028", 2029 => "2029", 2030 => "2030", 2031 => "2031", 2032 => "2032", 2033 => "2033", 2034 => "2034"], date('Y'))->class('form-control') }}
 				            @if ($errors->has('expiration_year'))
 				                <span class="help-block">
 				                    <strong>{{ $errors->first('expiration_year') }}</strong>
@@ -233,7 +233,7 @@
 						</div>
 						<div class="col form-group{{ $errors->has('cvc') ? ' has-error' : '' }}">
 							<label for="cvc">CVC (on back)</label>
-							{!! Form::text('cvc',null,['class'=>'form-control','placeholder'=>'CVC']) !!}
+							{{ html()->text('cvc')->class('form-control')->placeholder('CVC') }}
 				            @if ($errors->has('cvc'))
 				                <span class="help-block">
 				                    <strong>{{ $errors->first('cvc') }}</strong>
@@ -256,7 +256,7 @@
 					@endif
 		        </div>
 		    </div>
-			{!! Form::close() !!}
+			{{ html()->form()->close() }}
 		</div>
 	</div>
 @endsection

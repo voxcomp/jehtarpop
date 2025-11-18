@@ -57,10 +57,10 @@ Administration - Support Tickets
 			<div class="col-sm">
 				<h3 class="text-center">Create New Support Ticket</h3>
 				<p>Files and notes can be added after the ticket is created.</p>
-				{!! Form::open(array('route' => ['support.create'])) !!}
+				{{ html()->form('POST', route('support.create', ))->open() }}
 					<div class="mb-2{{ $errors->has('title') ? ' has-error' : '' }}">
-						{!! Form::label('title', 'Please give your issue a title:', ['class'=>'form-label']) !!}
-						{!! Form::text('title', old('title'), ['id'=>'title', 'class'=>'form-control','required','autocomplete'=>'nope']) !!}
+						{{ html()->label('Please give your issue a title:', 'title')->class('form-label') }}
+						{{ html()->text('title', old('title'))->id('title')->class('form-control')->required()->attribute('autocomplete', 'nope') }}
 						@if ($errors->has('title'))
 							<span class="help-block">
 								<strong>{{ $errors->first('title') }}</strong>
@@ -68,8 +68,8 @@ Administration - Support Tickets
 						@endif
 					</div>
 					<div class="mb-2{{ $errors->has('description') ? ' has-error' : '' }}">
-						{!! Form::label('description', 'Please describe the issue that was encountered in as much detail as possible:', ['class'=>'form-label']) !!}
-						{!! Form::textarea('description', old('description'), ['id'=>'description', 'class'=>'form-control','required','autocomplete'=>'nope']) !!}
+						{{ html()->label('Please describe the issue that was encountered in as much detail as possible:', 'description')->class('form-label') }}
+						{{ html()->textarea('description', old('description'))->id('description')->class('form-control')->required()->attribute('autocomplete', 'nope') }}
 						@if ($errors->has('description'))
 							<span class="help-block">
 								<strong>{{ $errors->first('description') }}</strong>
@@ -77,16 +77,16 @@ Administration - Support Tickets
 						@endif
 					</div>
 					<div class="mb-2">
-						{!! Form::label('email', 'Ticket Contacts', ['class'=>'form-label']) !!}
-						{!! Form::text('email', old('email',getSetting('ADMIN_EMAIL','general').','.env("SUPPORT_EMAIL")), ['id'=>'email','class'=>'form-control']) !!}
+						{{ html()->label('Ticket Contacts', 'email')->class('form-label') }}
+						{{ html()->text('email', old('email', getSetting('ADMIN_EMAIL', 'general') . ',' . env("SUPPORT_EMAIL")))->id('email')->class('form-control') }}
 						<div class="help-block">
 							Notified on status change and new notes.  Comma separate multiple addresses.
 						</div>
 					</div>
 					<div class="text-right">
-						{!! Form::submit('Create',['class'=>'btn btn-primary']) !!}
+						{{ html()->input('submit')->value('Create')->class('btn btn-primary') }}
 					</div>
-				{!! Form::close() !!}
+				{{ html()->form()->close() }}
 			</div>
 		</div>
 	</div>

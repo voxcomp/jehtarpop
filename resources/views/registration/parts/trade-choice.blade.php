@@ -14,20 +14,20 @@
 			            <div class="col-sm">
 				            <div class="form-group">
 					            <label for="course-trade">Select Trade:</label>
-					            {!! Form::select('course-trade',['0'=>'Choose...']+$classes,null,['class'=>'form-control course-trade','onchange'=>"getCourseLocations()", 'required']) !!}
+					            {{ html()->select('course-trade', ['0' => 'Choose...'] + $classes)->class('form-control course-trade')->attribute('onchange', "getCourseLocations()")->required() }}
 				            </div>
 				            <div class="agreements"></div>
 			            </div>
 			            <div class="col-sm">
 				            <div class="course-location-container" style="display:none;">
 					            <label for="course-location">Select Location:</label>
-					            {!! Form::select('course-location',[],null,['class'=>'form-control course-location','onchange'=>'getCourseIDs()']) !!}
+					            {{ html()->select('course-location', [])->class('form-control course-location')->attribute('onchange', 'getCourseIDs()') }}
 				            </div>
 			            </div>
 			            <div class="col-sm">
 				            <div class="course-id-container" style="display:none;">
 					            <label for="course-id">Select Course:</label>
-					            {!! Form::select('course-id',[],null,['class'=>'form-control course-id','onchange'=>'getCourseCost(); getCourseDescription();']) !!}
+					            {{ html()->select('course-id', [])->class('form-control course-id')->attribute('onchange', 'getCourseCost(); getCourseDescription();') }}
 				            </div>
 			            </div>
 		            </div>
@@ -38,7 +38,7 @@
 								<div class="course-description"></div>
 							</div>
 				            <div class="course-cost-container" style="display:none;">
-					            {!! Form::hidden('cost',null,['id'=>'cost']) !!}
+					            {{ html()->hidden('cost')->id('cost') }}
 					            <p>Course Cost:<br><strong><span class="course-cost"></span></strong></p>
 				            </div>
 			            </div>

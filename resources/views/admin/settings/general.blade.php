@@ -14,18 +14,18 @@ Administration - General Settings
 					<div class="card-header">Fundraising</div>
 		
 					<div class="card-body">
-						{!!Form::open(array('route'=>'fundraising'))!!}
+						{{ html()->form('POST', route('fundraising'))->open() }}
 						<div class="row">
 							<div class="col-sm">
 								<div class="form-group">
 									<label for='fund_goal'>Funding Goal:</label>
-									{!!Form::text('fund_goal',$settings['donation']->fund_goal,['class'=>'form-control'])!!}
+									{{ html()->text('fund_goal', $settings['donation']->fund_goal)->class('form-control') }}
 								</div>
 								<div class="form-group">
 									<label for='fund_goal'>Require check payment amount:</label>
-									{!!Form::text('payment_limit',$settings['donation']->payment_limit,['class'=>'form-control'])!!}
+									{{ html()->text('payment_limit', $settings['donation']->payment_limit)->class('form-control') }}
 								</div>
-								<div class="form-group">{!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}</div>
+								<div class="form-group">{{ html()->input('submit')->value('Submit')->class('btn btn-primary') }}</div>
 								<table class="table table-striped">
 									<thead>
 										<tr>
@@ -48,7 +48,7 @@ Administration - General Settings
 								</table>
 							</div>
 						</div>
-						{!!Form::close()!!}
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>
@@ -61,24 +61,24 @@ Administration - General Settings
 					<div class="card-header">Administrator Email</div>
 	
 					<div class="card-body">
-						{!!Form::open(array('route'=>'adminEmail'))!!}
+						{{ html()->form('POST', route('adminEmail'))->open() }}
 						<div class="row">
 							<div class="col-sm">
 								<div class="form-group">
 									<label for='adminemail'>Administrator Email List:</label>
-									{!!Form::text('ADMIN_EMAIL',$settings['general']->ADMIN_EMAIL,['class'=>'form-control'])!!}
+									{{ html()->text('ADMIN_EMAIL', $settings['general']->ADMIN_EMAIL)->class('form-control') }}
 									<div class="help-block">Use a comma separated list for multiple addresses</div>
 								</div>
 								{{--
 								<div class="form-group">
 									<label for='adminemail2'>Second Administrator Email:</label>
-									{!!Form::text('ADMIN_EMAIL2',$settings['general']->ADMIN_EMAIL2,['class'=>'form-control'])!!}
+									{{ html()->text('ADMIN_EMAIL2', $settings['general']->ADMIN_EMAIL2)->class('form-control') }}
 								</div>
 								--}}
 							</div>
 						</div>
-						<div class="form-group">{!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group">{{ html()->input('submit')->value('Submit')->class('btn btn-primary') }}</div>
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>
@@ -91,21 +91,21 @@ Administration - General Settings
 					<div class="card-header">Authorize.net API</div>
 	
 					<div class="card-body">
-						{!!Form::open(array('route'=>'adminAPI'))!!}
+						{{ html()->form('POST', route('adminAPI'))->open() }}
 						<div class="row">
 							<div class="col-sm">
 								<div class="form-group">
 									<label for='adminemail'>API Login:</label>
-									{!!Form::text('api_login',$settings['api']->api_login,['class'=>'form-control'])!!}
+									{{ html()->text('api_login', $settings['api']->api_login)->class('form-control') }}
 								</div>
 								<div class="form-group">
 									<label for='adminemail2'>Transaction Key:</label>
-									{!!Form::text('transaction_key',$settings['api']->transaction_key,['class'=>'form-control'])!!}
+									{{ html()->text('transaction_key', $settings['api']->transaction_key)->class('form-control') }}
 								</div>
 							</div>
 						</div>
-						<div class="form-group">{!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group">{{ html()->input('submit')->value('Submit')->class('btn btn-primary') }}</div>
+						{{ html()->form()->close() }}
 					</div>
 				</div>
 			</div>

@@ -8,7 +8,7 @@ Make A Payment
 	<div class="row justify-content-center">
 		<div class="col-sm-8">
 			<p class="text-center"><big><i class="far fa-credit-card text-primary"></i></big> <strong>Pay with Credit Card or eCheck (ACH)</strong></p>
-			{!! Form::open(array('route' => ['freePayment'],'class'=>'paymentform')) !!}
+			{{ html()->form('POST', route('freePayment', ))->class('paymentform')->open() }}
 			<div class="card">
 				<div class="card-header">Billing Information</div>
 	
@@ -131,7 +131,7 @@ Make A Payment
 						<div class="col-sm">
 							<div class="form-group{{ $errors->has('card') ? ' has-error' : '' }}">
 								<label for="amount">Amount to Pay</label>
-								{!! Form::text('amount',null,['class'=>'form-control money','placeholder'=>'AMOUNT TO PAY']) !!}
+								{{ html()->text('amount')->class('form-control money')->placeholder('AMOUNT TO PAY') }}
 					            @if ($errors->has('amount'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('amount') }}</strong>
@@ -145,7 +145,7 @@ Make A Payment
 						<div class="col-sm">
 							<div class="form-group{{ $errors->has('card') ? ' has-error' : '' }}">
 								<label for="amount">Card Number</label>
-								{!! Form::text('card_number',null,['class'=>'form-control ccard','placeholder'=>'CARD NUMBER']) !!}
+								{{ html()->text('card_number')->class('form-control ccard')->placeholder('CARD NUMBER') }}
 					            @if ($errors->has('card_number'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('card_number') }}</strong>
@@ -157,7 +157,7 @@ Make A Payment
 			        <div class="row">
 						<div class="col form-group{{ $errors->has('expiremm') ? ' has-error' : '' }}">
 							<label for="expiremm">Expire Month</label>
-							{!! Form::select('expiration_month',[1=>"January", 2=>"February", 3=>"March", 4=>"April", 5=>"May", 6=>"June", 7=>"July", 8=>"August", 9=>"September", 10=>"October", 11=>"November", 12=>"December"],1,['class'=>'form-control']) !!}
+							{{ html()->select('expiration_month', [1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"], 1)->class('form-control') }}
 				            @if ($errors->has('expiration_month'))
 				                <span class="help-block">
 				                    <strong>{{ $errors->first('expiration_month') }}</strong>
@@ -166,7 +166,7 @@ Make A Payment
 						</div>
 						<div class="col form-group{{ $errors->has('expireyy') ? ' has-error' : '' }}">
 							<label for="expiremm">Expire Year</label>
-							{!! Form::select('expiration_year',["2023"=>"2023","2024"=>"2024","2025"=>"2025","2026"=>"2026","2027"=>"2027","2028"=>"2028","2029"=>"2029","2030"=>"2030","2031"=>"2031","2032"=>"2032","2033"=>"2033","2034"=>"2034"],date('Y'),['class'=>'form-control']) !!}
+							{{ html()->select('expiration_year', ["2023" => "2023", "2024" => "2024", "2025" => "2025", "2026" => "2026", "2027" => "2027", "2028" => "2028", "2029" => "2029", "2030" => "2030", "2031" => "2031", "2032" => "2032", "2033" => "2033", "2034" => "2034"], date('Y'))->class('form-control') }}
 				            @if ($errors->has('expiration_year'))
 				                <span class="help-block">
 				                    <strong>{{ $errors->first('expiration_year') }}</strong>
@@ -175,7 +175,7 @@ Make A Payment
 						</div>
 						<div class="col form-group{{ $errors->has('cvv') ? ' has-error' : '' }}">
 							<label for="cvv">CVV (on back)</label>
-							{!! Form::text('cvc',null,['class'=>'form-control','placeholder'=>'CVV']) !!}
+							{{ html()->text('cvc')->class('form-control')->placeholder('CVV') }}
 				            @if ($errors->has('cvc'))
 				                <span class="help-block">
 				                    <strong>{{ $errors->first('cvc') }}</strong>
@@ -192,7 +192,7 @@ Make A Payment
 		            <input type="submit" class="btn btn-primary" value="Continue To Payment">
 		        </div>
 		    </div>
-			{!! Form::close() !!}
+			{{ html()->form()->close() }}
 		</div>
 	</div>
 @endsection

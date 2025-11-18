@@ -16,14 +16,14 @@
 			            <div class="col-sm">
 				            <div class="course-id-container">
 					            <label for="course-id">Select Course:</label>
-					            {!! Form::select('course-id',['0'=>'Choose...']+$classes,null,['class'=>'form-control course-id','onchange'=>"getCourseCost('".$path."')", 'required']) !!}
+					            {{ html()->select('course-id', ['0' => 'Choose...'] + $classes)->class('form-control course-id')->attribute('onchange', "getCourseCost('" . $path . "')")->required() }}
 				            </div>
 			            </div>
 		            </div>
 		            <div class="row">
 			            <div class="col text-center">
 				            <div class="course-cost-container" style="display:none;">
-					            {!! Form::hidden('cost',null,['id'=>'cost']) !!}
+					            {{ html()->hidden('cost')->id('cost') }}
 					            <p>Cost:<br><strong><span class="course-cost"></span></strong></p>
 				            </div>
 			            </div>

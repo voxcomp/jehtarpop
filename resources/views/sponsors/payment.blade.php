@@ -13,9 +13,9 @@
 			<p>&nbsp;</p>
 			<h3 class="text-center"><strong>Donation Amount: ${{number_format($donation->amount,2)}}</strong></h3>
 			<div class="text-center">
-				{!! Form::open(array('route' => ['sponsor.submitAltPayment',$donation->id],'class'=>'alternateform')) !!}
-				{!! Form::submit('Pay By Check',['class'=>'btn btn-primary']) !!}
-				{!! Form::close() !!}
+				{{ html()->form('POST', route('sponsor.submitAltPayment', $donation->id))->class('alternateform')->open() }}
+				{{ html()->input('submit')->value('Pay By Check')->class('btn btn-primary') }}
+				{{ html()->form()->close() }}
 				<div class="mt-3">&mdash; OR &mdash;</div>
 			</div>
 			<div id="iframe_holder" class="center-block" style="width:90%;max-width:400px;height:600px;">

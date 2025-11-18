@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-	{!! Form::open(array('route' => ['registration.company.save',$path], 'id'=>'company_form')) !!}
+	{{ html()->form('POST', route('registration.company.save', $path))->id('company_form')->open() }}
 	@if(isset($register))
 	    {{ method_field('PATCH') }}
 	@endif
@@ -30,7 +30,7 @@
 						<div class="col-sm-5">
 							<div class="form-group">
 								<label for="company">Choose Your Company Name</label>
-								{!! Form::select('company',(['0'=>'Please choose...']+$customers->pluck('name','id')->all()),null,['id'=>'company','class'=>'form-control','onchange'=>'getCompanyInformation(this.value)']) !!}
+								{{ html()->select('company', ['0' => 'Please choose...'] + $customers->pluck('name', 'id')->all())->id('company')->class('form-control')->attribute('onchange', 'getCompanyInformation(this.value)') }}
 							</div>
 						</div>
 						<div class="col-sm-7">
@@ -145,7 +145,7 @@
 		    </div>
 		</div>
 	</div>
-	{!! Form::close() !!}
+	{{ html()->form()->close() }}
 @endsection
 
 @if(isset($register))

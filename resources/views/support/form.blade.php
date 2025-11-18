@@ -28,13 +28,13 @@ Create Support Ticket
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-sm">
-				{!! Form::open(array('route' => ['support.create'], 'id'=>'support_form', 'autocomplete'=>'off')) !!}
+				{{ html()->form('POST', route('support.create', ))->id('support_form')->attribute('autocomplete', 'off')->open() }}
 					<input autocomplete="false" name="hidden" type="text" style="display:none;">
 					@if(!isset($registration) && !isset($register) && !\Auth::check())
 						<div class="row">
 							<div class="col-sm-4 mb-2{{ $errors->has('name') ? ' has-error' : '' }}">
-								{!! Form::label('contactname', 'Name', ['class'=>'form-label']) !!}
-								{!! Form::text('contactname', old('contactname'), ['id'=>'contactname', 'class'=>'form-control', 'required']) !!}
+								{{ html()->label('Name', 'contactname')->class('form-label') }}
+								{{ html()->text('contactname', old('contactname'))->id('contactname')->class('form-control')->required() }}
 								@if ($errors->has('contactname'))
 									<span class="help-block">
 										<strong>{{ $errors->first('contactname') }}</strong>
@@ -42,8 +42,8 @@ Create Support Ticket
 								@endif
 							</div>
 							<div class="col-sm-4 mb-2{{ $errors->has('contactemail') ? ' has-error' : '' }}">
-								{!! Form::label('contactemail', 'Email', ['class'=>'form-label']) !!}
-								{!! Form::text('contactemail', old('contactemail'), ['id'=>'contactemail', 'class'=>'form-control', 'required']) !!}
+								{{ html()->label('Email', 'contactemail')->class('form-label') }}
+								{{ html()->text('contactemail', old('contactemail'))->id('contactemail')->class('form-control')->required() }}
 								@if ($errors->has('contactemail'))
 									<span class="help-block">
 										<strong>{{ $errors->first('contactemail') }}</strong>
@@ -51,8 +51,8 @@ Create Support Ticket
 								@endif
 							</div>
 							<div class="col-sm-4 mb-2{{ $errors->has('contactphone') ? ' has-error' : '' }}">
-								{!! Form::label('contactphone', 'Phone', ['class'=>'form-label']) !!}
-								{!! Form::text('contactphone', old('contactphone'), ['id'=>'contactphone', 'class'=>'form-control']) !!}
+								{{ html()->label('Phone', 'contactphone')->class('form-label') }}
+								{{ html()->text('contactphone', old('contactphone'))->id('contactphone')->class('form-control') }}
 								@if ($errors->has('contactphone'))
 									<span class="help-block">
 										<strong>{{ $errors->first('contactphone') }}</strong>
@@ -61,16 +61,16 @@ Create Support Ticket
 							</div>
 						</div>
 						@if(isset($path))
-							{!! Form::hidden('path',\Crypt::encrypt($path)) !!}
+							{{ html()->hidden('path', \Crypt::encrypt($path)) }}
 						@endif
 					@elseif(!\Auth::check() && isset($registration))
-						{!! Form::hidden('registration',\Crypt::encrypt($registration->id)) !!}
+						{{ html()->hidden('registration', \Crypt::encrypt($registration->id)) }}
 					@elseif(!\Auth::check() && isset($register) && isset($path))
-						{!! Form::hidden('path',\Crypt::encrypt($path)) !!}
+						{{ html()->hidden('path', \Crypt::encrypt($path)) }}
 					@endif
 					<div class="mb-2{{ $errors->has('title') ? ' has-error' : '' }}">
-						{!! Form::label('title', 'Please give your issue a title:', ['class'=>'form-label']) !!}
-						{!! Form::text('title', old('title'), ['id'=>'title', 'class'=>'form-control','required','autocomplete'=>'nope']) !!}
+						{{ html()->label('Please give your issue a title:', 'title')->class('form-label') }}
+						{{ html()->text('title', old('title'))->id('title')->class('form-control')->required()->attribute('autocomplete', 'nope') }}
 						@if ($errors->has('title'))
 							<span class="help-block">
 								<strong>{{ $errors->first('title') }}</strong>
@@ -78,8 +78,8 @@ Create Support Ticket
 						@endif
 					</div>
 					<div class="mb-2{{ $errors->has('description') ? ' has-error' : '' }}">
-						{!! Form::label('description', 'Please describe the issue that was encountered in as much detail as possible:', ['class'=>'form-label']) !!}
-						{!! Form::textarea('description', old('description'), ['id'=>'description', 'class'=>'form-control','required','autocomplete'=>'nope']) !!}
+						{{ html()->label('Please describe the issue that was encountered in as much detail as possible:', 'description')->class('form-label') }}
+						{{ html()->textarea('description', old('description'))->id('description')->class('form-control')->required()->attribute('autocomplete', 'nope') }}
 						<div class="help-block">
 							Please describe the steps to reproduce the problem, what information you are using, and if you are trying to register as a company or an individual and what class you are choosing.
 						</div>
@@ -91,17 +91,17 @@ Create Support Ticket
 					</div>
 					@if(\Auth::check())
 					<div class="mb-2">
-						{!! Form::label('email', 'Email Addresses', ['class'=>'form-label']) !!}
-						{!! Form::text('email', old('email'), ['id'=>'email','class'=>'form-control']) !!}
+						{{ html()->label('Email Addresses', 'email')->class('form-label') }}
+						{{ html()->text('email', old('email'))->id('email')->class('form-control') }}
 						<div class="help-block">
 							Notified on status change and new notes.  Comma separate multiple addresses.
 						</div>
 					</div>
 					@endif
 					<div class="text-right">
-						{!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
+						{{ html()->input('submit')->value('Submit')->class('btn btn-primary') }}
 					</div>
-				{!! Form::close() !!}
+				{{ html()->form()->close() }}
 			</div>
 		</div>
 	</div>

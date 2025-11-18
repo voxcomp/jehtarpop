@@ -107,10 +107,10 @@
 						<hr>
 				        <div class="row">
 					        <div class="col-sm">
-									<p><strong>Division of Apprentice Standards (DAS) Registered apprentice (<a href="https://www.mass.gov/info-details/explore-apprenticeships-in-massachusetts#become-an-apprentice-in-the-building-trades-" target="_blank">more info</a>):</strong><br>{!!Form::radio('das', 1, (old('das',0)==1)?true:false)!!} Yes &nbsp; {!!Form::radio('das', 0, (old('das',0)==0)?true:false)!!} No</p>
+									<p><strong>Division of Apprentice Standards (DAS) Registered apprentice (<a href="https://www.mass.gov/info-details/explore-apprenticeships-in-massachusetts#become-an-apprentice-in-the-building-trades-" target="_blank">more info</a>):</strong><br>{{ html()->radio('das', old('das', 0) == 1 ? true : false, 1) }} Yes &nbsp; {{ html()->radio('das', old('das', 0) == 0 ? true : false, 0) }} No</p>
 					        </div>
 							<div class="col-sm">
-									<p><strong>Building Mass Careers Apprentice Program (BMC-AP):</strong><br>{!!Form::radio('map', 1, (old('map',0)==1)?true:false)!!} Yes &nbsp; {!!Form::radio('map', 0, (old('map',0)==0)?true:false)!!} No</p>
+									<p><strong>Building Mass Careers Apprentice Program (BMC-AP):</strong><br>{{ html()->radio('map', old('map', 0) == 1 ? true : false, 1) }} Yes &nbsp; {{ html()->radio('map', old('map', 0) == 0 ? true : false, 0) }} No</p>
 							</div>
 						</div>
 					@endif

@@ -8,7 +8,7 @@ Make A Donation
 	<div class="row justify-content-center">
 		<div class="col-lg-12">
 			<p>These are exciting times at Gould Construction Institute, ABC MA’s training affiliate! We have opened a brand new facility in Billerica, MA with all new training options and programs to serve the construction industry. In conjunction with this, we have launched a fundraising campaign to help defray building costs.  Please send a donation in using the form below in support of GCI. Thank you for supporting Gould Construction Institute!</p>
-			{!! Form::open(array('route' => ['donations.submitDonation'],'class'=>'billingform')) !!}
+			{{ html()->form('POST', route('donations.submitDonation', ))->class('billingform')->open() }}
 			<div class="card mb-3">
 				<div class="card-header">Billing Information</div>
 	
@@ -119,7 +119,7 @@ Make A Donation
 						<div class="col-sm">
 							<div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
 								<label for="amount">Amount to Pay</label>
-								{!! Form::text('amount',null,['class'=>'form-control money','placeholder'=>'AMOUNT TO PAY']) !!}
+								{{ html()->text('amount')->class('form-control money')->placeholder('AMOUNT TO PAY') }}
 								@if ($errors->has('amount'))
 									<span class="help-block">
 										<strong>{{ $errors->first('amount') }}</strong>
@@ -134,7 +134,7 @@ Make A Donation
 			@if(\Auth::check() && \Auth::user()->usertype=="admin")
 				<div class="row form-group">
 					<div class="col-sm">
-						{!! Form::checkbox('inkind',101) !!} <strong>Offline donation</strong> (no payment screen)
+						{{ html()->checkbox('inkind', null, 101) }} <strong>Offline donation</strong> (no payment screen)
 					</div>
 				</div>
 			@endif
@@ -143,7 +143,7 @@ Make A Donation
 					<input type="submit" class="btn btn-primary" value="Continue">
 				</div>
 			</div>
-			{!! Form::close() !!}
+			{{ html()->form()->close() }}
 		</div>
 	</div>
 @endsection

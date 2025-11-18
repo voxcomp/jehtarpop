@@ -11,10 +11,10 @@ Administration - View Donations
 	                <div class="card-header">View Donations</div>
 	
 	                <div class="card-body">
-						{!!Form::open(array('route'=>'admin.viewDonations'))!!}
+						{{ html()->form('POST', route('admin.viewDonations'))->open() }}
 						<div class="row">
 							<div class="col-sm">
-								<div class="form-group"><label>Start Date</label>{!!Form::text('start', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>Start Date</label>{{ html()->text('start')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('start'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('start') }}</strong>
@@ -22,7 +22,7 @@ Administration - View Donations
 					            @endif
 							</div>
 							<div class="col-sm">
-								<div class="form-group"><label>End Date</label>{!!Form::text('end', null, ['class'=>'form-control datepicker','required'])!!}</div>
+								<div class="form-group"><label>End Date</label>{{ html()->text('end')->class('form-control datepicker')->required() }}</div>
 					            @if ($errors->has('end'))
 					                <span class="help-block">
 					                    <strong>{{ $errors->first('end') }}</strong>
@@ -31,10 +31,10 @@ Administration - View Donations
 							</div>
 						</div>
 						<div class="form-group">
-							{!!Form::checkbox("hold",1)!!} Show only donations on <strong>hold</strong>
+							{{ html()->checkbox("hold", null, 1) }} Show only donations on <strong>hold</strong>
 						</div>
-						<div class="form-group"><label>&nbsp;</label>{!!Form::submit('View',['class'=>'btn btn-danger'])!!}</div>
-						{!!Form::close()!!}
+						<div class="form-group"><label>&nbsp;</label>{{ html()->input('submit')->value('View')->class('btn btn-danger') }}</div>
+						{{ html()->form()->close() }}
 	                </div>
 	            </div>
 		    </div>

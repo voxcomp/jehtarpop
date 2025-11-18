@@ -11,7 +11,7 @@
 @section('content')
 	<div class="row justify-content-center">
 		<div class="col-sm">
-			{!! Form::open(array('route' => ['registration.billing.save',[$path,$registration->id]],'class'=>'paymentform', 'id'=>'ccpaymentform')) !!}
+			{{ html()->form('POST', route('registration.billing.save', [$path, $registration->id]))->class('paymentform')->id('ccpaymentform')->open() }}
 			<div class="card">
 				<div class="card-header">Billing Information</div>
 	
@@ -83,7 +83,7 @@
 		            <input type="submit" class="btn btn-primary" value="Continue To Payment">
 		        </div>
 		    </div>
-			{!! Form::close() !!}
+			{{ html()->form()->close() }}
 		</div>
 	</div>
 @endsection
