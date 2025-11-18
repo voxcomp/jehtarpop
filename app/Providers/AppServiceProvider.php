@@ -4,12 +4,6 @@ namespace App\Providers;
 
 use App\Events\RegistrationProcessed;
 use App\Listeners\SendRegistrationNotification;
-use App\Models\SupportTicket;
-use App\Models\SupportTicketFile;
-use App\Models\SupportTicketNote;
-use App\Observers\SupportTicketFileObserver;
-use App\Observers\SupportTicketNoteObserver;
-use App\Observers\SupportTicketObserver;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
@@ -41,9 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        SupportTicket::observe(SupportTicketObserver::class);
-        SupportTicketNote::observe(SupportTicketNoteObserver::class);
-        SupportTicketFile::observe(SupportTicketFileObserver::class);
+
         Schema::defaultStringLength(191);
 
         $this->bootEvent();

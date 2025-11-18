@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\SupportTicketNoteObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
+#[ObservedBy([SupportTicketNoteObserver::class])]
 class SupportTicketNote extends Model
 {
     use Notifiable;
