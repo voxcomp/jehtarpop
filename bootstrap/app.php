@@ -14,7 +14,27 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectUsersTo(RouteServiceProvider::HOME);
+
+        $middleware->validateCsrfTokens(except: [
+            'registration/*/payment/complete',
+            'registration/*/payment/complete/*',
+            'registration/online/payment/complete/*',
+            'registration/trade/payment/complete/*',
+            'registration/{path}/payment/complete/{registration}',
+            'donation/payment/{donation}',
+            'donation/payment/*',
+            'sponsor/payment/{donation}',
+            'sponsor/payment/*',
+        ]);
+
+        $middleware->throttleApi();
+
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AuthenticatedAsAdmin::class,
+            'cors' => \App\Http\Middleware\Cors::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
