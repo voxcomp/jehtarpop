@@ -330,7 +330,7 @@ class AdminController extends Controller
 
     public function donationsView(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'start' => 'required|date_format:m/d/Y|max:10',
             'end' => 'required|date_format:m/d/Y|max:10',
         ]);
@@ -356,7 +356,7 @@ class AdminController extends Controller
 
     public function registrationView(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'start' => 'required|date_format:m/d/Y|max:10',
             'end' => 'required|date_format:m/d/Y|max:10',
         ]);
@@ -389,7 +389,7 @@ class AdminController extends Controller
 
     public function donationsDownload(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'start' => 'required|date_format:m/d/Y|max:10',
             'end' => 'required|date_format:m/d/Y|max:10',
         ]);
@@ -403,7 +403,7 @@ class AdminController extends Controller
 
     public function registrationDownload(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'start' => 'required|date_format:m/d/Y|max:10',
             'end' => 'required|date_format:m/d/Y|max:10',
         ]);
@@ -433,7 +433,7 @@ class AdminController extends Controller
 
     public function classDescription(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'id' => 'required',
             'description' => 'required|max:1000',
         ]);
@@ -445,7 +445,7 @@ class AdminController extends Controller
 
     public function addAgreement(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'trade' => 'required',
             'message' => 'required|max:400',
         ]);
@@ -565,7 +565,7 @@ class AdminController extends Controller
     public function couponCreate(Request $request)
     {
         // validate post vars from form
-        $this->validate($request, [
+        $request->validate([
             'name' => 'required|string|max:25|unique:coupons',
             'amount' => 'required|numeric',
             'maxuse' => 'required|integer',
@@ -597,7 +597,7 @@ class AdminController extends Controller
         $coupon = Coupon::where('id', '=', $request->id)->first();
         if (! empty($coupon)) {
             // validate post vars from form
-            $this->validate($request, [
+            $request->validate([
                 'name' => 'required|string|max:25',
                 'amount' => 'required|numeric',
                 'maxuse' => 'required|integer',

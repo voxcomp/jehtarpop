@@ -80,7 +80,7 @@ class RegistrationController extends Controller
 
     public function saveCompany(Request $request, $path)
     {
-        $this->validate($request, [
+        $request->validate([
             'name' => 'nullable|string|max:200',
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:200',
@@ -118,7 +118,7 @@ class RegistrationController extends Controller
 
     public function updateCompany(Request $request, $path)
     {
-        $this->validate($request, [
+        $request->validate([
             'name' => 'nullable|string|max:200',
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:200',
@@ -228,7 +228,7 @@ class RegistrationController extends Controller
                 $validate['course-id'] = 'required|integer|min:1';
                 break;
         }
-        $this->validate($request, $validate);
+        $request->validate($validate);
         $check = $this->checkStudentBalance($request);
         if ($check !== false) {
             return back()->withInput()->with('errormessage', 'This person has an outstanding balance and cannot be registered until that balance is paid in full.<br><a href="/balance/'.$check.'">The balance can be paid online here.</a>');
@@ -398,7 +398,7 @@ class RegistrationController extends Controller
                 $validate['course-id'] = 'required|integer|min:1';
                 break;
         }
-        $this->validate($request, $validate);
+        $request->validate($validate);
 
         $check = $this->checkStudentBalance($request);
         if ($check !== false) {
@@ -485,7 +485,7 @@ class RegistrationController extends Controller
 
     public function saveBilling($path, Registration $registration, Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'firstname' => 'required|string|max:200',
             'lastname' => 'required|string|max:200',
             'address' => 'required|string|max:200',

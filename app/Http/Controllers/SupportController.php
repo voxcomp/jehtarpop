@@ -59,7 +59,7 @@ class SupportController extends Controller
 
     public function createTicket(Request $request): RedirectResponse
     {
-        $this->validate($request, [
+        $request->validate([
             'title' => 'required|string|max:200',
             'description' => 'required|string',
             'contactname' => 'nullable|string|max:100',
@@ -128,7 +128,7 @@ class SupportController extends Controller
 
     public function saveEmail(SupportTicket $ticket, Request $request): RedirectResponse
     {
-        $this->validate($request, [
+        $request->validate([
             'email' => 'required|string|max:300',
         ]);
         $ticket->email = $request->email;
@@ -139,7 +139,7 @@ class SupportController extends Controller
 
     public function saveNote(SupportTicket $ticket, Request $request): RedirectResponse
     {
-        $this->validate($request, [
+        $request->validate([
             'note' => 'required|string',
         ]);
         $ticket->notes()->create(['description' => $request->note]);

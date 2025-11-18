@@ -30,7 +30,7 @@ class DonationsController extends Controller
             $isDonationExist = null;
         }
         if (! $isDonationExist) {
-            $this->validate($request, [
+            $request->validate([
                 'firstname' => 'required|string|max:50',
                 'lastname' => 'required|string|max:75',
                 'title' => 'nullable|string|max:75',
@@ -131,7 +131,7 @@ class DonationsController extends Controller
             $isDonationExist = null;
         }
         if (! $isDonationExist) {
-            $this->validate($request, [
+            $request->validate([
                 'logo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
                 'firstname' => 'required|string|max:50',
                 'lastname' => 'required|string|max:75',
